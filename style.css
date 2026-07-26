@@ -363,3 +363,15 @@ footer.site .copy { color: var(--ink-3); font-size: 0.84rem; width: 100%; }
    （不要用 inline style 切換——清空 inline display 會退回這裡的 none，整頁變空白。） */
 [data-lang-only] { display: none; }
 [data-lang-only].is-active { display: block; }
+
+/* ---------- 上架前的「即將推出」首頁 ---------- */
+/* 完整行銷首頁保留在 home-full.html，上架後換回來時這一段可以留著不用刪。 */
+
+.soon { padding: clamp(64px, 14vw, 140px) 0; text-align: center; }
+.soon .wrap { max-width: 560px; }
+.soon-coin { width: 96px; height: 96px; color: var(--gold); margin-bottom: 26px; }
+.soon h1 { font-size: clamp(2rem, 6vw, 2.9rem); margin-bottom: 10px; }
+.soon .tag { font-size: 1.15rem; color: var(--ink-2); margin-bottom: 6px; }
+.soon .small { margin-bottom: 30px; }
+.soon-contact a { font-weight: 650; text-decoration: none; }
+.soon-contact a:hover { text-decoration: underline; }

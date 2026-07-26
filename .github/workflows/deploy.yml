@@ -45,11 +45,16 @@ jobs:
       - uses: actions/checkout@v5
 
       # 只挑要公開的檔案，不要把 scripts/ 與 .github/ 一起發出去。
+      #
+      # **上架前刻意不發佈兩個檔案**：
+      #   home-full.html —— 完整的行銷首頁（功能、定價、截圖），上架前不對外
+      #   sitemap.xml    —— 站台目前整站 noindex，給 sitemap 自相矛盾
+      # App Store 上架後照 README「上架後恢復官網」把兩者放回來。
       - name: 組出發佈內容
         run: |
           mkdir -p _site
           cp index.html privacy.html terms.html support.html 404.html \
-             style.css i18n.js robots.txt sitemap.xml _site/
+             style.css i18n.js robots.txt _site/
           cp -R assets _site/assets
 
       - uses: actions/configure-pages@v5

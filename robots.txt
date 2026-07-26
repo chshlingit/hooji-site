@@ -1,4 +1,3 @@
+# 上架前：整站不收錄。正式公開時改回 Allow: / 並還原 Sitemap 那一行。
 User-agent: *
-Allow: /
-
-Sitemap: https://chshlingit.github.io/hooji-site/sitemap.xml
+Disallow: /

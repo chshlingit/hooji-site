@@ -5,17 +5,38 @@ push 到 `main` 就由 GitHub Actions 檢查並部署到 GitHub Pages。
 
 App 本體在 [chshlingit/huoji](https://github.com/chshlingit/huoji)。
 
+## 現在的狀態：上架前，行銷首頁未公開
+
+App 尚未上架，因此**正式站上的首頁是「即將推出」**，不透露功能、定價與截圖。
+完整的行銷首頁原封不動保留在 `home-full.html`，但**刻意不在 `deploy.yml` 的發佈清單裡**，
+所以不會出現在正式站上。全站另加 `noindex` 與 `robots.txt: Disallow: /`。
+
+**法律頁（隱私、條款、支援）維持可存取**——這是刻意的：
+App Store Connect 的 Privacy Policy URL 指向 `privacy.html`，Apple 送審時會實際去點，
+整站關掉會直接被退件（App Review 5.1.1）。
+
+### 上架後恢復官網
+
+1. `git mv home-full.html index.html`（覆蓋掉「即將推出」那版）
+2. 移除各頁 `<meta name="robots" content="noindex, nofollow">`
+3. `robots.txt` 改回 `Allow: /` 並還原 `Sitemap:` 那一行
+4. `deploy.yml` 的發佈清單加回 `sitemap.xml`
+5. `scripts/smoke.sh` 的首頁斷言改回「說一句話／Say it once」，並移除 `home-full.html` 那兩條
+6. 把首頁的 App Store 按鈕換成正式連結（見下方「上線前替換」）
+
 ## 這個 repo 有什麼
 
 ```text
-index.html      首頁（怎麼運作／功能／隱私／方案／FAQ）
+index.html      首頁（上架前＝「即將推出」）
+home-full.html  完整行銷首頁（怎麼運作／功能／隱私／方案／FAQ）——上架前不發佈
 privacy.html    隱私權政策 ← App Store Connect 的 Privacy Policy URL 填這頁
 terms.html      使用條款（App 授權以 Apple 標準 EULA 為準，本頁補充訂閱與責任）
 support.html    支援 ← App Store Connect 的 Support URL 填這頁
 404.html        找不到頁面
 style.css       全站樣式（淺色／深色由系統偏好決定）
 i18n.js         繁中／英文切換 ＋ 字典
-assets/         hooji-coin.svg（品牌金幣，頁面上的 SVG 由它而來）、favicon、apple-touch-icon、OG 分享圖
+assets/         hooji-coin.svg／hooji-coin-small.svg（品牌金幣，頁面上的 inline SVG 由它們而來）、
+                favicon、apple-touch-icon、OG 分享圖
 scripts/        make-og.py（產生 OG 圖）、check-site.mjs（靜態檢查）、smoke.sh（瀏覽器煙霧測試）
 ```
 
@@ -61,6 +82,19 @@ CI 兩支都會先跑，沒過就不部署。
 GitHub 上需設定 **Settings → Pages → Source: GitHub Actions**（只需設定一次）。
 
 只有網站檔案會被發佈，`scripts/` 與 `.github/` 不會出現在正式站上。
+
+## 品牌金幣（兩個光學尺寸）
+
+金幣中央是**金錢符號 `$`**。標誌有兩個版本，不是兩個標誌：
+
+| 版本 | 用在哪 | 差別 |
+|---|---|---|
+| `hooji-coin.svg`（大） | 手機示意圖裡的金幣按鈕（62px）、任何 ≥40px 的場合 | 外圈 ＋ 內圈刻線 ＋ `$`（s 2.30、線寬 7） |
+| `hooji-coin-small.svg`（小） | 頁首（26px）、頁尾（22px）、favicon | **省略內圈**、`$` 放大加粗（s 2.55、線寬 7.6） |
+
+小尺寸要省略內圈，是因為內圈刻線和 `$` 的筆畫在 16–26px 下會糊成一團。
+唯一來源是 App 的 `Brand/HoojiCoinIcon.swift`（HuoJi repo），改幾何時三邊要一起改：
+Swift、`docs/brand/*.svg`、本站的 inline SVG ＋ `assets/favicon.svg` ＋ `scripts/make-og.py`。
 
 ## 重新產生 OG 分享圖
 

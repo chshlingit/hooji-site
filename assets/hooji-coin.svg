@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Hooji 金幣主視覺（App Icon 與功能按鈕共用源）。
-     Apple 極簡線條、全 vector、透明背景、中央 H；
-     currentColor 讓深淺色模式都可辨識。上架 App Icon 由此匯出 1024px PNG（背景另加）。 -->
+<!-- Hooji 金幣主視覺（App Icon 與記帳按鈕共用源）。
+     Apple 極簡線條、全 vector、透明背景、中央金錢符號 $；
+     currentColor 讓深淺色模式都可辨識。上架 App Icon 由此匯出 1024px PNG（背景另加）。
+
+     這是**大尺寸版本（≥40px）**：外圈 ＋ 內圈刻線 ＋ $。
+     小尺寸（<40px，例如 favicon、頁首小標）請改用 hooji-coin-small.svg——
+     內圈與 $ 的筆畫在小尺寸會糊在一起，該版本省略內圈並把 $ 放大加粗。
+
+     幾何與 apps/HuoJi.iOS/HuoJi/Brand/HoojiCoinIcon.swift 完全對應，改一邊要兩邊一起改。
+     $ 的構型：豎線貫穿上下，S 由三段水平線＋兩個半圓組成（s = 2.30、線寬 7，刻意與外圈同寬）。 -->
 <svg width="100" height="100" viewBox="0 0 100 100" fill="none"
      xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-linecap="round">
   <!-- 外圈（金幣邊） -->
   <circle cx="50" cy="50" r="46.5" stroke-width="7"/>
   <!-- 內圈（幣面刻線） -->
-  <circle cx="50" cy="50" r="36.3" stroke-width="3.15"/>
-  <!-- 中央 H -->
-  <path d="M 36.3 30.9 V 69.1 M 63.7 30.9 V 69.1 M 36.3 50 H 63.7" stroke-width="7"/>
+  <circle cx="50" cy="50" r="35.5" stroke-width="2.4"/>
+  <!-- 中央 $：貫穿豎線 -->
+  <path d="M 50 24.7 V 75.3" stroke-width="7"/>
+  <!-- 中央 $：S 形（三段水平線＋兩個半圓） -->
+  <path d="M 61.5 33.9 H 44.25 A 8.05 8.05 0 0 0 44.25 50
+           H 55.75 A 8.05 8.05 0 0 1 55.75 66.1 H 36.2" stroke-width="7"/>
 </svg>

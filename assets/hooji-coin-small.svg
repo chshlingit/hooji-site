@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hooji 金幣主視覺——**小尺寸版本（<40px）**。
+     與 hooji-coin.svg 的差別只有兩點：
+       ① 省略內圈刻線：小尺寸下它會和 $ 的筆畫糊在一起（16px 時間距不到 1px）
+       ② $ 放大加粗（s = 2.55、線寬 7.6），補回少掉的內圈份量
+
+     這是光學尺寸，不是另一個標誌——Apple 在 SF Symbols 用的是同一套作法。
+     對應 HoojiCoinIcon.swift 裡 side < 40 的分支。 -->
+<svg width="100" height="100" viewBox="0 0 100 100" fill="none"
+     xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-linecap="round">
+  <circle cx="50" cy="50" r="46.5" stroke-width="7"/>
+  <path d="M 50 21.95 V 78.05" stroke-width="7.6"/>
+  <path d="M 62.75 32.15 H 43.625 A 8.925 8.925 0 0 0 43.625 50
+           H 56.375 A 8.925 8.925 0 0 1 56.375 67.85 H 34.7" stroke-width="7.6"/>
+</svg>

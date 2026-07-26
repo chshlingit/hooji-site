@@ -35,19 +35,58 @@ def gradient():
     return small.resize((W, H), Image.BICUBIC)
 
 
-def draw_coin(draw, cx, cy, r):
-    """與 docs/brand/hooji-coin.svg 相同比例的金幣：外圈、內圈、中央 H。"""
-    outer_w = r * 0.15
-    draw.ellipse([cx - r, cy - r, cx + r, cy + r], outline=INK, width=int(outer_w))
-    inner = r * 0.78
-    draw.ellipse([cx - inner, cy - inner, cx + inner, cy + inner], outline=INK, width=int(r * 0.068))
-    h_h = inner * 1.05
-    h_w = h_h * 0.72
-    left, right = cx - h_w / 2, cx + h_w / 2
-    top, bottom = cy - h_h / 2, cy + h_h / 2
-    bar = int(outer_w)
-    for a, b in (((left, top), (left, bottom)), ((right, top), (right, bottom)), ((left, cy), (right, cy))):
-        draw.line([a, b], fill=INK, width=bar, joint="curve")
+def draw_coin(draw, cx, cy, outer_radius_px):
+    """金幣：外圈、內圈刻線、中央 $。
+
+    座標直接沿用 docs/brand/hooji-coin.svg 的 100×100 格線（外圈半徑 46.5），
+    最後乘上一個比例換算成像素——這樣兩邊的數字可以逐項對照，改一邊就知道要改哪裡。
+    這裡畫的是**大尺寸版本**（有內圈，$ 的 s = 2.30、線寬 7）。
+    """
+    unit = outer_radius_px / 46.5
+
+    def px(value):
+        return value * unit
+
+    def at(x, y):
+        return cx + px(x - 50), cy + px(y - 50)
+
+    def box(center_x, center_y, radius, width):
+        """PIL 的 ellipse／arc 是**往內**畫線寬（外緣貼齊 bounding box），
+        直接用半徑當 box 會讓圓弧的中心線比直線短半個線寬、接縫對不齊。
+        這裡把 box 外擴半個線寬，讓中心線落在指定半徑上，和 SVG 的 stroke 行為一致。"""
+        cx0, cy0 = at(center_x, center_y)
+        r = px(radius) + width / 2
+        return [cx0 - r, cy0 - r, cx0 + r, cy0 + r]
+
+    def dot(x, y, width):
+        """補圓角端點——PIL 的線與弧沒有 round cap，接縫處會出現缺口。"""
+        cx0, cy0 = at(x, y)
+        r = width / 2
+        draw.ellipse([cx0 - r, cy0 - r, cx0 + r, cy0 + r], fill=INK)
+
+    outer_w = max(1, round(px(7)))
+    glyph_w = max(1, round(px(7)))
+
+    draw.ellipse(box(50, 50, 46.5, outer_w), outline=INK, width=outer_w)
+    inner_w = max(1, round(px(2.4)))
+    draw.ellipse(box(50, 50, 35.5, inner_w), outline=INK, width=inner_w)
+
+    # $ 的貫穿豎線
+    draw.line([at(50, 24.7), at(50, 75.3)], fill=INK, width=glyph_w)
+    dot(50, 24.7, glyph_w)
+    dot(50, 75.3, glyph_w)
+
+    # $ 的 S：三段水平線 ＋ 兩個半圓（角度自 3 點鐘起、順時針增加）
+    s_radius = 8.05
+    left, right = 44.25, 55.75
+    top, bottom = 33.9, 66.1
+    draw.line([at(61.5, top), at(left, top)], fill=INK, width=glyph_w)
+    draw.arc(box(left, (top + 50) / 2, s_radius, glyph_w), 90, 270, fill=INK, width=glyph_w)
+    draw.line([at(left, 50), at(right, 50)], fill=INK, width=glyph_w)
+    draw.arc(box(right, (50 + bottom) / 2, s_radius, glyph_w), 270, 90, fill=INK, width=glyph_w)
+    draw.line([at(right, bottom), at(36.2, bottom)], fill=INK, width=glyph_w)
+    for x, y in ((61.5, top), (left, top), (left, 50), (right, 50), (right, bottom), (36.2, bottom)):
+        dot(x, y, glyph_w)
 
 
 def main():
