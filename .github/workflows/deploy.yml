@@ -22,10 +22,10 @@ jobs:
     name: 靜態檢查
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
-          node-version: '20'
+          node-version: '22'
       - name: 連結與雙語字串檢查
         run: node scripts/check-site.mjs
 
@@ -42,7 +42,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       # 只挑要公開的檔案，不要把 scripts/ 與 .github/ 一起發出去。
       - name: 組出發佈內容
