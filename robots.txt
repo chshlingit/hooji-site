@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://chshlingit.github.io/hooji-site/sitemap.xml

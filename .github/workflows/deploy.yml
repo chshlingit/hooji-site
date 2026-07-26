@@ -1,0 +1,60 @@
+# 官網部署：push 到 main 就先做靜態檢查，通過才發佈到 GitHub Pages。
+# Pages 來源必須設為「GitHub Actions」（Settings → Pages → Source: GitHub Actions）。
+name: 部署官網
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 同時只跑一個部署；新的 push 進來就取消還在排隊的舊部署。
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: 靜態檢查
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: 連結與雙語字串檢查
+        run: node scripts/check-site.mjs
+
+      # 靜態檢查看不到 JS 執行後的結果，這一步用 headless Chrome 實際載入每一頁，
+      # 確認語言區塊真的有顯示出來（曾經整頁空白而靜態檢查全綠）。
+      - name: 瀏覽器煙霧測試
+        run: bash scripts/smoke.sh
+
+  deploy:
+    name: 發佈到 GitHub Pages
+    needs: check
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      # 只挑要公開的檔案，不要把 scripts/ 與 .github/ 一起發出去。
+      - name: 組出發佈內容
+        run: |
+          mkdir -p _site
+          cp index.html privacy.html terms.html support.html 404.html \
+             style.css i18n.js robots.txt sitemap.xml _site/
+          cp -R assets _site/assets
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4

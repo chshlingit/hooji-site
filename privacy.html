@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<!-- 隱私權政策。內容必須與這三處一致：App 內「設定 → 隱私說明」、
+     App Store Connect 的隱私問卷、PrivacyInfo.xcprivacy。改這頁時三處一起檢查。 -->
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-i18n="meta_title_privacy">隱私權政策 — 夥計 Hooji</title>
+<meta name="description" content="夥計（Hooji）隱私權政策：沒有帳號、沒有伺服器資料庫，帳目只存在你的裝置與你自己的 iCloud。">
+<meta name="theme-color" content="#e0951f">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <svg class="coin" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true">
+        <circle cx="50" cy="50" r="46.5" stroke-width="7"/>
+        <circle cx="50" cy="50" r="36.3" stroke-width="3.15"/>
+        <path d="M 36.3 30.9 V 69.1 M 63.7 30.9 V 69.1 M 36.3 50 H 63.7" stroke-width="7"/>
+      </svg>
+      <span data-i18n="brand">夥計</span><span class="en-name" data-i18n="brand_sub">Hooji</span>
+    </a>
+    <nav class="top">
+      <a href="index.html" data-i18n="nav_home">回首頁</a>
+      <a href="terms.html" data-i18n="foot_terms">使用條款</a>
+      <a href="support.html" data-i18n="nav_support">支援</a>
+      <span class="lang-switch" role="group" aria-label="Language">
+        <button type="button" data-lang="zh">繁中</button>
+        <button type="button" data-lang="en">EN</button>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<article class="doc">
+  <div class="wrap">
+    <a class="back-link" href="index.html" data-i18n="back_home">← 回首頁</a>
+
+    <!-- ==================== 繁體中文 ==================== -->
+    <div data-lang-only="zh">
+      <h1>隱私權政策</h1>
+      <p class="updated">最後更新：2026 年 7 月 26 日</p>
+
+      <div class="callout">
+        <p><strong>一句話總結：</strong>夥計沒有帳號系統，也沒有伺服器資料庫。你的支出紀錄只存在你的裝置與你自己的 iCloud，我們沒有副本、也無從讀取。唯一會離開裝置的，是你在使用 AI 記帳時說（或打）的那一句話。</p>
+      </div>
+
+      <h2>一、適用範圍</h2>
+      <p>本政策適用於 iPhone 與 Apple Watch 上的「夥計（Hooji）」App，以及本網站。夥計由位於台灣的個人開發者開發與維運，聯絡方式為 <a href="mailto:hooji.app@gmail.com">hooji.app@gmail.com</a>。</p>
+
+      <h2>二、我們不收集什麼</h2>
+      <ul>
+        <li>沒有註冊、沒有登入、沒有使用者帳號或密碼。</li>
+        <li>不使用任何廣告、行為分析或使用者追蹤 SDK；App 的隱私清單中「追蹤」一欄為否。</li>
+        <li>不收集你的姓名、Email、電話、聯絡人、位置、相簿、通訊錄或廣告識別碼。</li>
+        <li>不收集你的支出紀錄——包含金額、商家、分類與備註。</li>
+      </ul>
+
+      <h2>三、留在你裝置上的資料</h2>
+      <ul>
+        <li><strong>支出紀錄</strong>（金額、幣別、內容、商家、分類、時間、備註、付款方式）儲存在你裝置的本機資料庫。</li>
+        <li>若你的裝置已登入 iCloud，這些紀錄會透過 Apple 的 <strong>CloudKit 私有資料庫</strong>在<strong>你自己的</strong>裝置之間同步。該資料位於你的 Apple 帳號底下，我們沒有存取權限。</li>
+        <li><strong>訂閱狀態</strong>由 Apple 的 StoreKit 提供與驗證；<strong>試用起始日期</strong>存放在你的 iCloud 鍵值儲存與本機 Keychain，用來判斷 7 天試用是否已使用過。這兩者都不會傳送給我們。</li>
+      </ul>
+
+      <h2>四、使用 AI 記帳時，會送出什麼</h2>
+      <p>只有在你使用 AI 一句話記帳（語音或文字）時，才會有資料離開你的裝置。每一次請求包含：</p>
+      <div class="table-scroll">
+      <table>
+        <thead><tr><th>送出的內容</th><th>說明</th></tr></thead>
+        <tbody>
+          <tr><td>你說（或打）的那一句話</td><td>長度上限 200 字。語音辨識在你的裝置上完成，<strong>原始錄音不會上傳</strong>，只送出辨識後的文字。</td></tr>
+          <tr><td>送出時間與時區</td><td>用來把「昨天午餐」這類說法換算成正確的日期。</td></tr>
+          <tr><td>一次性請求識別碼</td><td>隨機產生，用來避免同一句話被重複記成兩筆；不對應到任何人。</td></tr>
+          <tr><td>來源（語音／文字）</td><td>僅供解析使用。</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p><strong>不會送出：</strong>你的姓名、Email、裝置識別碼、廣告識別碼、位置，以及你既有的任何一筆支出紀錄。若你只使用手動記帳（或處於免費層），則不會有任何內容離開你的裝置。</p>
+
+      <h2>五、誰會處理這句話</h2>
+      <ul>
+        <li><strong>Cloudflare, Inc.</strong>（Cloudflare Workers）——我們的無狀態中繼，用途是代為保管 AI 服務金鑰並轉送請求。它<strong>不寫入任何資料庫、不保存請求內容</strong>；作為基礎設施供應商，Cloudflare 可能產生短暫的營運層級日誌。</li>
+        <li><strong>OpenAI, L.L.C.</strong>——實際執行語意解析。我們呼叫時已設定<strong>關閉對話保存</strong>；依 OpenAI 的 API 資料使用政策，透過 API 傳送的內容預設不會用於訓練模型，但 OpenAI 仍可能為濫用偵測目的短暫保留。</li>
+        <li><strong>Apple Inc.</strong>——iCloud 同步與訂閱交易，適用 Apple 自己的隱私權政策。</li>
+      </ul>
+      <p>正因為第三方可能為濫用偵測短暫保留該段文字，我們在 App 的隱私清單中誠實申報這項為「其他使用者內容」，並標示為<strong>未與你的身分連結</strong>——請求本身不帶任何使用者識別碼。</p>
+
+      <h2>六、我們保存多久</h2>
+      <p>我們沒有資料庫，因此沒有可保存的內容。中繼在轉送完該次請求後即結束，不留下副本。</p>
+
+      <h2>七、你的權利與控制</h2>
+      <ul>
+        <li><strong>刪除全部資料：</strong>App 內「設定 → 刪除所有資料」，經兩次確認後永久刪除本機與 iCloud 上的所有支出，無法復原。</li>
+        <li><strong>沒有帳號要刪：</strong>因為沒有帳號系統，也就沒有需要另行刪除的伺服器資料。</li>
+        <li><strong>不想用 AI：</strong>只使用手動記帳，就不會有任何內容離開裝置。</li>
+        <li><strong>法定權利：</strong>你在個人資料保護法、GDPR 等法規下的查詢、更正與刪除權，因資料就在你手上，可直接於 App 內完成；需要協助請來信。</li>
+      </ul>
+
+      <h2>八、兒童</h2>
+      <p>夥計並非針對 13 歲以下兒童設計，也不會刻意收集兒童的個人資料。</p>
+
+      <h2>九、安全</h2>
+      <ul>
+        <li>App 與中繼之間一律使用 HTTPS 加密連線。</li>
+        <li>AI 服務金鑰只存在中繼的加密環境變數中，<strong>絕不隨 App 散佈</strong>；App 內不含任何 AI 服務金鑰。</li>
+        <li>正式環境不記錄完整的語音或文字內容。</li>
+      </ul>
+
+      <h2>十、政策變更</h2>
+      <p>本政策若有實質變更，會更新本頁的「最後更新」日期；重大變更會另於 App 內告知。</p>
+
+      <h2>十一、聯絡我們</h2>
+      <p>對隱私有任何疑問，請寄信到 <a href="mailto:hooji.app@gmail.com">hooji.app@gmail.com</a>。</p>
+    </div>
+
+    <!-- ==================== English ==================== -->
+    <div data-lang-only="en">
+      <h1>Privacy Policy</h1>
+      <p class="updated">Last updated: 26 July 2026</p>
+
+      <div class="callout">
+        <p><strong>In one sentence:</strong> Hooji has no accounts and no server database. Your expenses exist only on your device and in your own iCloud — we hold no copy and cannot read them. The only thing that ever leaves your device is the single sentence you say or type when you use AI logging.</p>
+      </div>
+
+      <h2>1. Scope</h2>
+      <p>This policy covers the Hooji app for iPhone and Apple Watch, and this website. Hooji is built and operated by an independent developer based in Taiwan. Contact: <a href="mailto:hooji.app@gmail.com">hooji.app@gmail.com</a>.</p>
+
+      <h2>2. What we do not collect</h2>
+      <ul>
+        <li>No sign-up, no sign-in, no user account or password.</li>
+        <li>No advertising, behavioural analytics or tracking SDKs of any kind. The app's privacy manifest declares tracking as false.</li>
+        <li>No name, email, phone number, contacts, location, photos or advertising identifiers.</li>
+        <li>No expense records — not the amounts, merchants, categories or notes.</li>
+      </ul>
+
+      <h2>3. Data that stays on your device</h2>
+      <ul>
+        <li><strong>Expenses</strong> (amount, currency, description, merchant, category, time, note, payment method) are stored in a local database on your device.</li>
+        <li>If your device is signed in to iCloud, those records sync between <strong>your own</strong> devices through Apple's <strong>CloudKit private database</strong>. That data sits under your Apple account and we have no access to it.</li>
+        <li><strong>Subscription status</strong> comes from Apple's StoreKit. The <strong>trial start date</strong> is stored in your iCloud key-value store and in the device Keychain so we can tell whether the 7-day trial has been used. Neither is ever sent to us.</li>
+      </ul>
+
+      <h2>4. What is sent when you use AI logging</h2>
+      <p>Data leaves your device only when you use AI one-sentence logging (by voice or text). Each request contains:</p>
+      <div class="table-scroll">
+      <table>
+        <thead><tr><th>What is sent</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td>The sentence you said or typed</td><td>Up to 200 characters. Speech is recognised on your device — <strong>the audio is never uploaded</strong>, only the recognised text.</td></tr>
+          <tr><td>Time of sending and time zone</td><td>So that phrasings like “yesterday's lunch” resolve to the right date.</td></tr>
+          <tr><td>A one-off request identifier</td><td>Randomly generated, used to stop the same sentence being logged twice. It maps to no person.</td></tr>
+          <tr><td>Source (voice or text)</td><td>Used for parsing only.</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p><strong>Not sent:</strong> your name, email, device identifiers, advertising identifiers, location, or any of your existing expenses. If you only log manually (or you are on the free tier), nothing leaves your device at all.</p>
+
+      <h2>5. Who processes that sentence</h2>
+      <ul>
+        <li><strong>Cloudflare, Inc.</strong> (Cloudflare Workers) — our stateless relay, whose only job is to hold the AI service key and forward the request. It <strong>writes to no database and stores no request content</strong>. As an infrastructure provider, Cloudflare may produce short-lived operational logs.</li>
+        <li><strong>OpenAI, L.L.C.</strong> — performs the actual parsing. We call it with <strong>conversation storage disabled</strong>. Under OpenAI's API data usage policy, content sent through the API is not used to train their models by default, though OpenAI may retain it briefly for abuse monitoring.</li>
+        <li><strong>Apple Inc.</strong> — iCloud sync and subscription transactions, governed by Apple's own privacy policy.</li>
+      </ul>
+      <p>Because a third party may briefly retain that text for abuse monitoring, we declare it honestly in the app's privacy manifest as “other user content”, marked as <strong>not linked to your identity</strong> — the request carries no user identifier of any kind.</p>
+
+      <h2>6. How long we keep things</h2>
+      <p>We have no database, so there is nothing for us to keep. The relay finishes when it has forwarded the request and retains no copy.</p>
+
+      <h2>7. Your rights and controls</h2>
+      <ul>
+        <li><strong>Delete everything:</strong> Settings → Delete all data. After two confirmations it permanently erases every expense on the device and in iCloud. This cannot be undone.</li>
+        <li><strong>No account to delete:</strong> there is no account system, so there is no server-side data left to remove.</li>
+        <li><strong>Prefer no AI:</strong> use manual logging only and nothing ever leaves your device.</li>
+        <li><strong>Legal rights:</strong> rights of access, rectification and erasure under GDPR, Taiwan's Personal Data Protection Act and similar laws can be exercised directly in the app, because the data is in your hands. Email us if you would like help.</li>
+      </ul>
+
+      <h2>8. Children</h2>
+      <p>Hooji is not directed at children under 13 and does not knowingly collect personal data from them.</p>
+
+      <h2>9. Security</h2>
+      <ul>
+        <li>All traffic between the app and the relay uses HTTPS.</li>
+        <li>The AI service key lives only in the relay's encrypted environment variables and is <strong>never shipped inside the app</strong>.</li>
+        <li>Production systems do not log the full contents of what you said or typed.</li>
+      </ul>
+
+      <h2>10. Changes to this policy</h2>
+      <p>If this policy changes materially we update the “Last updated” date on this page, and significant changes are also surfaced in the app.</p>
+
+      <h2>11. Contact</h2>
+      <p>Questions about privacy? Email <a href="mailto:hooji.app@gmail.com">hooji.app@gmail.com</a>.</p>
+    </div>
+  </div>
+</article>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="f-brand">
+      <svg class="coin" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true">
+        <circle cx="50" cy="50" r="46.5" stroke-width="7"/>
+        <circle cx="50" cy="50" r="36.3" stroke-width="3.15"/>
+        <path d="M 36.3 30.9 V 69.1 M 63.7 30.9 V 69.1 M 36.3 50 H 63.7" stroke-width="7"/>
+      </svg>
+      <span data-i18n="brand">夥計</span>
+    </div>
+    <div class="links">
+      <a href="privacy.html" data-i18n="foot_privacy">隱私權政策</a>
+      <a href="terms.html" data-i18n="foot_terms">使用條款</a>
+      <a href="support.html" data-i18n="foot_support">支援</a>
+      <a href="mailto:hooji.app@gmail.com" data-i18n="foot_contact">聯絡我們</a>
+    </div>
+    <div class="copy" data-i18n="foot_copy">© 2026 夥計 Hooji · 台灣製造</div>
+  </div>
+</footer>
+
+<script src="i18n.js"></script>
+</body>
+</html>
