@@ -80,10 +80,12 @@
           <tr><td>送出時間與時區</td><td>用來把「昨天午餐」這類說法換算成正確的日期。</td></tr>
           <tr><td>一次性請求識別碼</td><td>隨機產生，用來避免同一句話被重複記成兩筆；不對應到任何人。</td></tr>
           <tr><td>來源（語音／文字）</td><td>僅供解析使用。</td></tr>
+          <tr><td>你的記帳幣別</td><td>例如 TWD。你沒說幣別時用它當預設，否則所有非台灣使用者的第一筆帳都會被記成台幣。</td></tr>
+          <tr><td>你的語系代碼</td><td>例如 zh-Hant-TW。決定 AI 需要追問時用哪一種語言問你。</td></tr>
         </tbody>
       </table>
       </div>
-      <p><strong>不會送出：</strong>你的姓名、Email、裝置識別碼、廣告識別碼、位置，以及你既有的任何一筆支出紀錄。若你只使用手動記帳（或處於免費層），則不會有任何內容離開你的裝置。</p>
+      <p><strong>不會送出：</strong>你的姓名、Email、裝置識別碼、廣告識別碼、位置，以及你既有的任何一筆支出紀錄。若你只使用手動記帳，則不會有任何內容離開你的裝置。免費層在 iPhone 上不會呼叫 AI；Apple Watch 在尚未收到 iPhone 推來的方案狀態前，可能仍會送出一次——這是刻意的取捨，寧可讓付費使用者不被誤擋。</p>
 
       <p><strong>語音辨識在哪裡做：</strong>iPhone 押住金幣時，App 會同時做兩件事——用 Apple 的裝置端語音辨識即時把文字顯示在畫面上，以及把同一段麥克風音訊錄成音檔。放開後<strong>預設把音檔送去雲端辨識</strong>；上傳失敗或沒有網路時，改用裝置端已經聽到的文字送出。之所以預設走雲端，是因為 Apple 的裝置端辨識一次只能綁定一種語言、沒有自動偵測語言的模式，雙語或中英夾雜的說法必然有一邊聽不準；雲端模型會自動判斷語言並處理語言切換。你可以在 App 內「設定 → 語音辨識 → 只用裝置端辨識」關掉雲端，錄音就完全不會離開你的手機（辨識品質則受上述限制）。</p>
 
@@ -164,10 +166,12 @@
           <tr><td>Time of sending and time zone</td><td>So that phrasings like “yesterday's lunch” resolve to the right date.</td></tr>
           <tr><td>A one-off request identifier</td><td>Randomly generated, used to stop the same sentence being logged twice. It maps to no person.</td></tr>
           <tr><td>Source (voice or text)</td><td>Used for parsing only.</td></tr>
+          <tr><td>Your logging currency</td><td>For example TWD. Used as the default when you do not say a currency — without it every first entry outside Taiwan would be recorded in New Taiwan dollars.</td></tr>
+          <tr><td>Your locale code</td><td>For example en-US. Decides which language the AI uses if it needs to ask you a follow-up question.</td></tr>
         </tbody>
       </table>
       </div>
-      <p><strong>Not sent:</strong> your name, email, device identifiers, advertising identifiers, location, or any of your existing expenses. If you only log manually (or you are on the free tier), nothing leaves your device at all.</p>
+      <p><strong>Not sent:</strong> your name, email, device identifiers, advertising identifiers, location, or any of your existing expenses. If you only log manually, nothing leaves your device at all. On the free tier your iPhone does not call the AI; an Apple Watch may still send one request before it has received the plan status pushed from your iPhone — a deliberate trade-off, so that paying users are never wrongly blocked.</p>
 
       <p><strong>Where speech is recognised:</strong> while you hold the coin on iPhone, the app does two things at once — it runs Apple's on-device speech recognition so you can watch the words appear, and it records the same microphone input to an audio file. When you release, <strong>the clip is sent for cloud transcription by default</strong>; if the upload fails or you have no connection, the text heard on device is sent instead. Cloud transcription is the default because Apple's on-device recogniser can only be bound to one language at a time and has no automatic language detection, so bilingual speech — or a sentence that switches languages halfway — is always misheard in one direction. The cloud model works out the language itself and handles the switching. You can turn the cloud off under Settings → Speech recognition → On-device recognition only, after which no audio leaves your phone (with the language limitation above).</p>
 
