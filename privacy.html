@@ -76,7 +76,7 @@
         <thead><tr><th>送出的內容</th><th>說明</th></tr></thead>
         <tbody>
           <tr><td>你說（或打）的那一句話</td><td>長度上限 200 字。文字記帳、以及 iPhone 選擇「只用裝置端辨識」時，送出的就是這一行文字。</td></tr>
-          <tr><td>語音記帳時的那一小段錄音</td><td>押住金幣期間錄下的短音檔（通常約 5 秒），送去轉成文字後接著解析。<strong>只用於當次辨識，辨識完就丟</strong>，我們不保存、不建立索引，也不與你的任何資料關聯。</td></tr>
+          <tr><td>語音記帳時的那一小段錄音</td><td>你說那一句話時錄下的短音檔（通常約 5 秒），送去轉成文字後接著解析。<strong>只用於當次辨識，辨識完就丟</strong>，我們不保存、不建立索引，也不與你的任何資料關聯。錄音何時開始、何時停止，見下方兩段說明。</td></tr>
           <tr><td>送出時間與時區</td><td>用來把「昨天午餐」這類說法換算成正確的日期。</td></tr>
           <tr><td>一次性請求識別碼</td><td>隨機產生，用來避免同一句話被重複記成兩筆；不對應到任何人。</td></tr>
           <tr><td>來源（語音／文字）</td><td>僅供解析使用。</td></tr>
@@ -90,6 +90,7 @@
       <p><strong>語音辨識在哪裡做：</strong>iPhone 押住金幣時，App 會同時做兩件事——用 Apple 的裝置端語音辨識即時把文字顯示在畫面上，以及把同一段麥克風音訊錄成音檔。放開後<strong>預設把音檔送去雲端辨識</strong>；上傳失敗或沒有網路時，改用裝置端已經聽到的文字送出。之所以預設走雲端，是因為 Apple 的裝置端辨識一次只能綁定一種語言、沒有自動偵測語言的模式，雙語或中英夾雜的說法必然有一邊聽不準；雲端模型會自動判斷語言並處理語言切換。你可以在 App 內「設定 → 語音辨識 → 只用裝置端辨識」關掉雲端，錄音就完全不會離開你的手機（辨識品質則受上述限制）。</p>
 
       <p><strong>Apple Watch：</strong>watchOS 沒有提供任何語音轉文字的 API，因此手錶上的語音記帳一律是把錄音送去雲端辨識。手錶會自己連線，不經過 iPhone。沒有網路時，錄音會暫存在手錶本機的待送佇列（最多 20 筆、保留 7 天），回到線上後自動送出；未送出前不會被記成一筆帳。</p>
+      <p><strong>手錶會在你打開 App 時主動開始錄音：</strong>這是為了讓你抬起手腕、講一句、放下就好，全程不必碰螢幕（點 Smart Stack 卡片進來也一樣）。三件事值得你知道：每次打開<strong>只會自動錄第一次</strong>，之後要再記一筆仍是押住金幣；你說完停下來它就結束錄音，<strong>如果從頭到尾沒聽到人聲，那段錄音會直接在手錶上丟掉，不會被上傳</strong>；以及你可以在 iPhone 的「設定 → Apple Watch → 手錶開啟就自動錄音」關掉它，關掉後一律改用押住金幣。手錶未取得麥克風權限時不會自動錄音，也不會為此主動跳出權限請求。</p>
 
       <h2>五、誰會處理這句話（與那段錄音）</h2>
       <ul>
@@ -162,7 +163,7 @@
         <thead><tr><th>What is sent</th><th>Why</th></tr></thead>
         <tbody>
           <tr><td>The sentence you said or typed</td><td>Up to 200 characters. This is what is sent for typed entries, and on iPhone when you choose “On-device recognition only”.</td></tr>
-          <tr><td>The short clip of speech, for voice entries</td><td>The audio recorded while you hold the coin (usually about 5 seconds), sent to be turned into text and then parsed. <strong>Used for that one transcription and then discarded</strong> — we do not store it, index it, or associate it with anything about you.</td></tr>
+          <tr><td>The short clip of speech, for voice entries</td><td>The audio recorded while you say the sentence (usually about 5 seconds), sent to be turned into text and then parsed. <strong>Used for that one transcription and then discarded</strong> — we do not store it, index it, or associate it with anything about you. When recording starts and stops is described in the two paragraphs below.</td></tr>
           <tr><td>Time of sending and time zone</td><td>So that phrasings like “yesterday's lunch” resolve to the right date.</td></tr>
           <tr><td>A one-off request identifier</td><td>Randomly generated, used to stop the same sentence being logged twice. It maps to no person.</td></tr>
           <tr><td>Source (voice or text)</td><td>Used for parsing only.</td></tr>
@@ -176,6 +177,7 @@
       <p><strong>Where speech is recognised:</strong> while you hold the coin on iPhone, the app does two things at once — it runs Apple's on-device speech recognition so you can watch the words appear, and it records the same microphone input to an audio file. When you release, <strong>the clip is sent for cloud transcription by default</strong>; if the upload fails or you have no connection, the text heard on device is sent instead. Cloud transcription is the default because Apple's on-device recogniser can only be bound to one language at a time and has no automatic language detection, so bilingual speech — or a sentence that switches languages halfway — is always misheard in one direction. The cloud model works out the language itself and handles the switching. You can turn the cloud off under Settings → Speech recognition → On-device recognition only, after which no audio leaves your phone (with the language limitation above).</p>
 
       <p><strong>Apple Watch:</strong> watchOS offers no speech-to-text API at all, so voice logging on the watch always sends the clip for cloud transcription. The watch connects on its own and does not go through your iPhone. With no connection the clip waits in a queue on the watch itself (up to 20 clips, kept for 7 days) and is sent automatically once you are back online; nothing is logged as an expense until it has been sent.</p>
+      <p><strong>The watch starts listening when you open the app:</strong> this is so you can raise your wrist, say one sentence and lower it again without touching the screen (the same happens when you tap the Smart Stack card). Three things worth knowing: it does this <strong>only once per launch</strong> — after that you press and hold the coin as usual; it stops recording when you stop speaking, and <strong>if it never hears any speech the clip is discarded on the watch and is never uploaded</strong>; and you can turn it off under Settings → Apple Watch → Auto-record on Apple Watch on your iPhone, after which press-and-hold is the only way to record. The watch will not auto-record without microphone permission, and never raises a permission prompt on its own to get it.</p>
 
       <h2>5. Who processes that sentence (and that clip)</h2>
       <ul>
