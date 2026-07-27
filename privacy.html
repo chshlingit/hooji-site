@@ -45,10 +45,10 @@
     <!-- ==================== 繁體中文 ==================== -->
     <div data-lang-only="zh">
       <h1>隱私權政策</h1>
-      <p class="updated">最後更新：2026 年 7 月 26 日</p>
+      <p class="updated">最後更新：2026 年 7 月 27 日</p>
 
       <div class="callout">
-        <p><strong>一句話總結：</strong>夥計沒有帳號系統，也沒有伺服器資料庫。你的支出紀錄只存在你的裝置與你自己的 iCloud，我們沒有副本、也無從讀取。唯一會離開裝置的，是你在使用 AI 記帳時說（或打）的那一句話。</p>
+        <p><strong>一句話總結：</strong>夥計沒有帳號系統，也沒有伺服器資料庫。你的支出紀錄只存在你的裝置與你自己的 iCloud，我們沒有副本、也無從讀取。唯一會離開裝置的，是你在使用 AI 記帳時說（或打）的那一句話——語音記帳時送出的是那一小段錄音，只用於當次辨識、用完即丟；iPhone 上可改成只用裝置端辨識。</p>
       </div>
 
       <h2>一、適用範圍</h2>
@@ -75,7 +75,8 @@
       <table>
         <thead><tr><th>送出的內容</th><th>說明</th></tr></thead>
         <tbody>
-          <tr><td>你說（或打）的那一句話</td><td>長度上限 200 字。語音辨識在你的裝置上完成，<strong>原始錄音不會上傳</strong>，只送出辨識後的文字。</td></tr>
+          <tr><td>你說（或打）的那一句話</td><td>長度上限 200 字。文字記帳、以及 iPhone 選擇「只用裝置端辨識」時，送出的就是這一行文字。</td></tr>
+          <tr><td>語音記帳時的那一小段錄音</td><td>押住金幣期間錄下的短音檔（通常約 5 秒），送去轉成文字後接著解析。<strong>只用於當次辨識，辨識完就丟</strong>，我們不保存、不建立索引，也不與你的任何資料關聯。</td></tr>
           <tr><td>送出時間與時區</td><td>用來把「昨天午餐」這類說法換算成正確的日期。</td></tr>
           <tr><td>一次性請求識別碼</td><td>隨機產生，用來避免同一句話被重複記成兩筆；不對應到任何人。</td></tr>
           <tr><td>來源（語音／文字）</td><td>僅供解析使用。</td></tr>
@@ -84,21 +85,26 @@
       </div>
       <p><strong>不會送出：</strong>你的姓名、Email、裝置識別碼、廣告識別碼、位置，以及你既有的任何一筆支出紀錄。若你只使用手動記帳（或處於免費層），則不會有任何內容離開你的裝置。</p>
 
-      <h2>五、誰會處理這句話</h2>
+      <p><strong>語音辨識在哪裡做：</strong>iPhone 押住金幣時，App 會同時做兩件事——用 Apple 的裝置端語音辨識即時把文字顯示在畫面上，以及把同一段麥克風音訊錄成音檔。放開後<strong>預設把音檔送去雲端辨識</strong>；上傳失敗或沒有網路時，改用裝置端已經聽到的文字送出。之所以預設走雲端，是因為 Apple 的裝置端辨識一次只能綁定一種語言、沒有自動偵測語言的模式，雙語或中英夾雜的說法必然有一邊聽不準；雲端模型會自動判斷語言並處理語言切換。你可以在 App 內「設定 → 語音辨識 → 只用裝置端辨識」關掉雲端，錄音就完全不會離開你的手機（辨識品質則受上述限制）。</p>
+
+      <p><strong>Apple Watch：</strong>watchOS 沒有提供任何語音轉文字的 API，因此手錶上的語音記帳一律是把錄音送去雲端辨識。手錶會自己連線，不經過 iPhone。沒有網路時，錄音會暫存在手錶本機的待送佇列（最多 20 筆、保留 7 天），回到線上後自動送出；未送出前不會被記成一筆帳。</p>
+
+      <h2>五、誰會處理這句話（與那段錄音）</h2>
       <ul>
-        <li><strong>Cloudflare, Inc.</strong>（Cloudflare Workers）——我們的無狀態中繼，用途是代為保管 AI 服務金鑰並轉送請求。它<strong>不寫入任何資料庫、不保存請求內容</strong>；作為基礎設施供應商，Cloudflare 可能產生短暫的營運層級日誌。</li>
-        <li><strong>OpenAI, L.L.C.</strong>——實際執行語意解析。我們呼叫時已設定<strong>關閉對話保存</strong>；依 OpenAI 的 API 資料使用政策，透過 API 傳送的內容預設不會用於訓練模型，但 OpenAI 仍可能為濫用偵測目的短暫保留。</li>
+        <li><strong>Cloudflare, Inc.</strong>（Cloudflare Workers）——我們的無狀態中繼，用途是代為保管 AI 服務金鑰並轉送請求。它<strong>不寫入任何資料庫、不保存請求內容</strong>：音檔在它手上只是一段轉手的串流，不會寫進任何儲存服務（沒有 R2／KV／D1）。作為基礎設施供應商，Cloudflare 可能產生短暫的營運層級日誌。</li>
+        <li><strong>OpenAI, L.L.C.</strong>——實際執行語音轉錄與語意解析。<strong>語音轉錄</strong>使用 OpenAI 的音訊轉錄端點，該端點的資料保留政策為<strong>不用於訓練模型（training = No），且不為濫用偵測保留（abuse monitoring = None）</strong>。<strong>語意解析</strong>則呼叫對話模型，我們已設定<strong>關閉對話保存</strong>；依 OpenAI 的 API 資料使用政策，透過 API 傳送的內容預設不會用於訓練模型，但 OpenAI 仍可能為濫用偵測目的短暫保留。</li>
         <li><strong>Apple Inc.</strong>——iCloud 同步與訂閱交易，適用 Apple 自己的隱私權政策。</li>
       </ul>
-      <p>正因為第三方可能為濫用偵測短暫保留該段文字，我們在 App 的隱私清單中誠實申報這項為「其他使用者內容」，並標示為<strong>未與你的身分連結</strong>——請求本身不帶任何使用者識別碼。</p>
+      <p>正因為第三方可能為濫用偵測短暫保留該段文字，我們在 App 的隱私清單中誠實申報這項為「其他使用者內容」；語音記帳送出的那段錄音則申報為「音訊資料」，用途皆為 <strong>App 功能</strong>。兩者都標示為<strong>未與你的身分連結、且不用於追蹤</strong>——請求本身不帶任何使用者識別碼。</p>
 
       <h2>六、我們保存多久</h2>
-      <p>我們沒有資料庫，因此沒有可保存的內容。中繼在轉送完該次請求後即結束，不留下副本。</p>
+      <p>我們沒有資料庫，因此沒有可保存的內容。中繼在轉送完該次請求後即結束，不留下副本。語音記帳的錄音只在該次請求中被轉成文字，之後即消失，我們手上沒有任何錄音檔。</p>
 
       <h2>七、你的權利與控制</h2>
       <ul>
         <li><strong>刪除全部資料：</strong>App 內「設定 → 刪除所有資料」，經兩次確認後永久刪除本機與 iCloud 上的所有支出，無法復原。</li>
         <li><strong>沒有帳號要刪：</strong>因為沒有帳號系統，也就沒有需要另行刪除的伺服器資料。</li>
+        <li><strong>不想讓錄音離開手機：</strong>iPhone 上到「設定 → 語音辨識」開啟「只用裝置端辨識」，語音就改由裝置端處理，只送出辨識後的文字。</li>
         <li><strong>不想用 AI：</strong>只使用手動記帳，就不會有任何內容離開裝置。</li>
         <li><strong>法定權利：</strong>你在個人資料保護法、GDPR 等法規下的查詢、更正與刪除權，因資料就在你手上，可直接於 App 內完成；需要協助請來信。</li>
       </ul>
@@ -110,7 +116,7 @@
       <ul>
         <li>App 與中繼之間一律使用 HTTPS 加密連線。</li>
         <li>AI 服務金鑰只存在中繼的加密環境變數中，<strong>絕不隨 App 散佈</strong>；App 內不含任何 AI 服務金鑰。</li>
-        <li>正式環境不記錄完整的語音或文字內容。</li>
+        <li>正式環境不記錄完整的語音或文字內容，音檔也不會被寫入任何儲存服務。</li>
       </ul>
 
       <h2>十、政策變更</h2>
@@ -123,10 +129,10 @@
     <!-- ==================== English ==================== -->
     <div data-lang-only="en">
       <h1>Privacy Policy</h1>
-      <p class="updated">Last updated: 26 July 2026</p>
+      <p class="updated">Last updated: 27 July 2026</p>
 
       <div class="callout">
-        <p><strong>In one sentence:</strong> Hooji has no accounts and no server database. Your expenses exist only on your device and in your own iCloud — we hold no copy and cannot read them. The only thing that ever leaves your device is the single sentence you say or type when you use AI logging.</p>
+        <p><strong>In one sentence:</strong> Hooji has no accounts and no server database. Your expenses exist only on your device and in your own iCloud — we hold no copy and cannot read them. The only thing that ever leaves your device is the single sentence you say or type when you use AI logging — for voice entries, the short clip of you saying it, used for that one transcription and then discarded. On iPhone you can switch to on-device recognition only, and then even that stays on your phone.</p>
       </div>
 
       <h2>1. Scope</h2>
@@ -153,7 +159,8 @@
       <table>
         <thead><tr><th>What is sent</th><th>Why</th></tr></thead>
         <tbody>
-          <tr><td>The sentence you said or typed</td><td>Up to 200 characters. Speech is recognised on your device — <strong>the audio is never uploaded</strong>, only the recognised text.</td></tr>
+          <tr><td>The sentence you said or typed</td><td>Up to 200 characters. This is what is sent for typed entries, and on iPhone when you choose “On-device recognition only”.</td></tr>
+          <tr><td>The short clip of speech, for voice entries</td><td>The audio recorded while you hold the coin (usually about 5 seconds), sent to be turned into text and then parsed. <strong>Used for that one transcription and then discarded</strong> — we do not store it, index it, or associate it with anything about you.</td></tr>
           <tr><td>Time of sending and time zone</td><td>So that phrasings like “yesterday's lunch” resolve to the right date.</td></tr>
           <tr><td>A one-off request identifier</td><td>Randomly generated, used to stop the same sentence being logged twice. It maps to no person.</td></tr>
           <tr><td>Source (voice or text)</td><td>Used for parsing only.</td></tr>
@@ -162,21 +169,26 @@
       </div>
       <p><strong>Not sent:</strong> your name, email, device identifiers, advertising identifiers, location, or any of your existing expenses. If you only log manually (or you are on the free tier), nothing leaves your device at all.</p>
 
-      <h2>5. Who processes that sentence</h2>
+      <p><strong>Where speech is recognised:</strong> while you hold the coin on iPhone, the app does two things at once — it runs Apple's on-device speech recognition so you can watch the words appear, and it records the same microphone input to an audio file. When you release, <strong>the clip is sent for cloud transcription by default</strong>; if the upload fails or you have no connection, the text heard on device is sent instead. Cloud transcription is the default because Apple's on-device recogniser can only be bound to one language at a time and has no automatic language detection, so bilingual speech — or a sentence that switches languages halfway — is always misheard in one direction. The cloud model works out the language itself and handles the switching. You can turn the cloud off under Settings → Speech recognition → On-device recognition only, after which no audio leaves your phone (with the language limitation above).</p>
+
+      <p><strong>Apple Watch:</strong> watchOS offers no speech-to-text API at all, so voice logging on the watch always sends the clip for cloud transcription. The watch connects on its own and does not go through your iPhone. With no connection the clip waits in a queue on the watch itself (up to 20 clips, kept for 7 days) and is sent automatically once you are back online; nothing is logged as an expense until it has been sent.</p>
+
+      <h2>5. Who processes that sentence (and that clip)</h2>
       <ul>
-        <li><strong>Cloudflare, Inc.</strong> (Cloudflare Workers) — our stateless relay, whose only job is to hold the AI service key and forward the request. It <strong>writes to no database and stores no request content</strong>. As an infrastructure provider, Cloudflare may produce short-lived operational logs.</li>
-        <li><strong>OpenAI, L.L.C.</strong> — performs the actual parsing. We call it with <strong>conversation storage disabled</strong>. Under OpenAI's API data usage policy, content sent through the API is not used to train their models by default, though OpenAI may retain it briefly for abuse monitoring.</li>
+        <li><strong>Cloudflare, Inc.</strong> (Cloudflare Workers) — our stateless relay, whose only job is to hold the AI service key and forward the request. It <strong>writes to no database and stores no request content</strong>: an audio clip is only a stream passing through it and is never written to any storage service (no R2, KV or D1). As an infrastructure provider, Cloudflare may produce short-lived operational logs.</li>
+        <li><strong>OpenAI, L.L.C.</strong> — performs both the speech-to-text and the parsing. We call it with <strong>conversation storage disabled</strong>. Under OpenAI's API data usage policy, content sent through the API is not used to train their models by default. Speech-to-text runs on a <strong>different endpoint</strong> whose policy is <strong>no training and no abuse-monitoring retention</strong> — meaning the audio clip is not kept at all. The text may still be retained briefly for abuse monitoring.</li>
         <li><strong>Apple Inc.</strong> — iCloud sync and subscription transactions, governed by Apple's own privacy policy.</li>
       </ul>
-      <p>Because a third party may briefly retain that text for abuse monitoring, we declare it honestly in the app's privacy manifest as “other user content”, marked as <strong>not linked to your identity</strong> — the request carries no user identifier of any kind.</p>
+      <p>Because a third party may briefly retain that text for abuse monitoring, we declare it honestly in the app's privacy manifest as “other user content”; the clip sent for voice entries is declared as “audio data”. Both are declared for <strong>app functionality</strong> and marked as <strong>not linked to your identity and not used for tracking</strong> — the request carries no user identifier of any kind.</p>
 
       <h2>6. How long we keep things</h2>
-      <p>We have no database, so there is nothing for us to keep. The relay finishes when it has forwarded the request and retains no copy.</p>
+      <p>We have no database, so there is nothing for us to keep. The relay finishes when it has forwarded the request and retains no copy; for voice entries the audio clip is discarded once it has been turned into text, and is never written to storage.</p>
 
       <h2>7. Your rights and controls</h2>
       <ul>
         <li><strong>Delete everything:</strong> Settings → Delete all data. After two confirmations it permanently erases every expense on the device and in iCloud. This cannot be undone.</li>
         <li><strong>No account to delete:</strong> there is no account system, so there is no server-side data left to remove.</li>
+        <li><strong>Keep recordings on your phone:</strong> on iPhone, turn on Settings → Speech recognition → On-device recognition only. Speech is then handled on the device and only the recognised text is sent.</li>
         <li><strong>Prefer no AI:</strong> use manual logging only and nothing ever leaves your device.</li>
         <li><strong>Legal rights:</strong> rights of access, rectification and erasure under GDPR, Taiwan's Personal Data Protection Act and similar laws can be exercised directly in the app, because the data is in your hands. Email us if you would like help.</li>
       </ul>
@@ -188,7 +200,7 @@
       <ul>
         <li>All traffic between the app and the relay uses HTTPS.</li>
         <li>The AI service key lives only in the relay's encrypted environment variables and is <strong>never shipped inside the app</strong>.</li>
-        <li>Production systems do not log the full contents of what you said or typed.</li>
+        <li>Production systems do not log the full contents of what you said or typed, and audio is never written to any storage service.</li>
       </ul>
 
       <h2>10. Changes to this policy</h2>
