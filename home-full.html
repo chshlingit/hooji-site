@@ -5,13 +5,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title data-i18n="meta_title">夥計 Hooji — 說一句話，帳就記好了</title>
-<meta name="description" data-i18n-attr="content" data-i18n="meta_desc" content="夥計是 iPhone 與 Apple Watch 上的 AI 記帳 App：押住金幣說一句話就完成一筆支出。帳目只存在你的裝置與 iCloud，我們不留存。">
+<title data-i18n="meta_title">夥計 Hooji — AI 語音記帳，說一句話帳就記好了</title>
+<meta name="description" data-i18n-attr="content" data-i18n="meta_desc" content="夥計是 iPhone 與 Apple Watch 上的 AI 語音記帳 App：押住金幣說一句話就完成一筆支出。帳目只存在你的裝置與 iCloud，我們不留存。">
 <!-- 上架前暫不收錄；正式公開時連同 robots.txt 一起移除 -->
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#e0951f">
-<meta property="og:title" data-i18n-attr="content" data-i18n="meta_title" content="夥計 Hooji — 說一句話，帳就記好了">
-<meta property="og:description" data-i18n-attr="content" data-i18n="meta_desc" content="押住金幣說一句話就完成一筆支出。帳目只存在你的裝置與 iCloud。">
+<meta property="og:title" data-i18n-attr="content" data-i18n="meta_title" content="夥計 Hooji — AI 語音記帳，說一句話帳就記好了">
+<!-- og:description 的 fallback 必須與 meta_desc 逐字相同：爬蟲多半不執行 JS，抓到的就是這一份 -->
+<meta property="og:description" data-i18n-attr="content" data-i18n="meta_desc" content="夥計是 iPhone 與 Apple Watch 上的 AI 語音記帳 App：押住金幣說一句話就完成一筆支出。帳目只存在你的裝置與 iCloud，我們不留存。">
 <meta property="og:type" content="website">
 <!-- og:image／og:url 必須是絕對網址，社群平台的爬蟲不會解析相對路徑。換自訂網域時這兩行要一起改。 -->
 <meta property="og:url" content="https://chshlingit.github.io/hooji-site/">
@@ -42,6 +43,7 @@
       <span class="lang-switch" role="group" aria-label="Language">
         <button type="button" data-lang="zh">繁中</button>
         <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="ja">日本語</button>
       </span>
     </nav>
   </div>
@@ -51,7 +53,7 @@
 <section class="hero" id="top">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <span class="eyebrow" data-i18n="hero_eyebrow">一句話記帳 · Apple Watch · Siri</span>
+      <span class="eyebrow" data-i18n="hero_eyebrow">一句話記帳 · Apple Watch</span>
       <h1 data-i18n-html="hero_h1">說一句話，<br><span class="hl">帳就記好了</span>。</h1>
       <p class="tag" data-i18n="hero_tag">押住金幣說「午餐 120」，夥計就把它整理成一筆支出，寫進你自己的裝置。沒有欄位要填、沒有分類要選、沒有帳號要註冊。</p>
       <p class="cta">
@@ -62,7 +64,7 @@
       <p class="small" data-i18n="hero_note">夥計正在開發中，上架後這裡會換成下載連結。</p>
       <ul class="hero-badges">
         <li><span class="dot"></span><span data-i18n="hero_b1">帳目只存在你的裝置與 iCloud</span></li>
-        <li><span class="dot"></span><span data-i18n="hero_b2">自動判斷語言，中英夾雜也聽得準</span></li>
+        <li><span class="dot"></span><span data-i18n="hero_b2">自動判斷語言，夾雜著講也聽得準</span></li>
         <li><span class="dot"></span><span data-i18n="hero_b3">7 天試用，不必先綁付款</span></li>
       </ul>
     </div>
@@ -86,7 +88,7 @@
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
                   <span data-i18n="ph_card_title">已記下這筆支出</span>
                 </div>
-                <div class="rec-row"><span data-i18n="ph_amount">金額</span><b>NT$180</b></div>
+                <div class="rec-row"><span data-i18n="ph_amount">金額</span><b data-i18n="ph_amount_v">NT$180</b></div>
                 <div class="rec-row"><span data-i18n="ph_desc">內容</span><b data-i18n="ph_desc_v">牛肉麵</b></div>
                 <div class="rec-row"><span data-i18n="ph_time">時間</span><b data-i18n="ph_time_v">今天 12:30</b></div>
               </div>
@@ -122,7 +124,7 @@
       <div class="step">
         <div class="n">1</div>
         <h3 data-i18n="s1_h">押住金幣，說一句話</h3>
-        <p data-i18n="s1_p">在 iPhone 或 Apple Watch 上押住金幣說話，放開就送出。辨識會自動判斷你講的是哪種語言，中英夾雜也聽得準；那段錄音只用於這一次辨識，轉成文字後就丟掉。</p>
+        <p data-i18n="s1_p">在 iPhone 或 Apple Watch 上押住金幣說話，放開就送出。辨識會自動判斷你講的是哪種語言，一句話裡夾雜著講也聽得準；那段錄音只用於這一次辨識，轉成文字後就丟掉。</p>
       </div>
       <div class="step">
         <div class="n">2</div>
@@ -161,9 +163,9 @@
       </div>
       <div class="card">
         <span class="tier plus">Plus</span>
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/><path d="M19 15.5 19.8 18l2.5.8-2.5.8L19 22l-.8-2.4-2.5-.8 2.5-.8.8-2.5z"/></svg></div>
-        <h3 data-i18n="f3_h">Siri 不必打開 App</h3>
-        <p data-i18n="f3_p">「Siri，用夥計記早餐 100 元」。正常情況下 Siri 直接回你一句「已記錄」，App 完全不用打開。</p>
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="9" rx="2.5"/><path d="M6.5 6.5h11M9 3h6"/></svg></div>
+        <h3 data-i18n="f3_h">今天花多少，抬腕就看到</h3>
+        <p data-i18n="f3_p">夥計的 Smart Stack 卡片把今天花了多少放在錶面上，抬腕轉一下數位錶冠就看到。想記一筆就點一下卡片，App 會直接開始聽，說完就記好。</p>
       </div>
       <div class="card">
         <span class="tier plus">Plus</span>
@@ -198,7 +200,7 @@
     <div class="privacy-grid">
       <div class="p-item">
         <h3 data-i18n="pri1_h">錄音用完就丟</h3>
-        <p data-i18n="pri1_p">那段錄音只用於當次辨識，轉成文字後就丟掉，中繼服務不寫入任何儲存。iPhone 上可在「設定 → 語音辨識」改成只用裝置端辨識，錄音就完全不離開手機。</p>
+        <p data-i18n="pri1_p">那段錄音只用於當次辨識，轉成文字後就丟掉，中繼服務不寫入任何儲存。iPhone 上可在「設定 → 語音辨識」改成只用裝置端辨識，錄音就完全不離開手機（限 Apple 離線辨識支援的語言）。</p>
       </div>
       <div class="p-item">
         <h3 data-i18n="pri2_h">帳目不離開你的裝置</h3>
@@ -241,13 +243,14 @@
       </div>
       <div class="plan featured">
         <div class="plan-name"><h3 data-i18n="pr_plus">夥計 Plus</h3><span class="badge" data-i18n="pr_badge">7 天試用</span></div>
-        <div class="price">NT$60 <small data-i18n="pr_permonth">/ 月</small></div>
-        <div class="price-alt" data-i18n="pr_yearly">或 NT$500 / 年（約 NT$42 / 月）</div>
+        <!-- 金額本身要有自己的 i18n 鍵：中文版標台幣、英文版標美元。
+             不能把 data-i18n 掛在外層 .price（textContent 會把 <small> 洗掉）。 -->
+        <div class="price"><span data-i18n="pr_monthly_price">NT$60</span> <small data-i18n="pr_permonth">/ 月</small></div>
+        <div class="price-alt" data-i18n="pr_yearly">或 NT$490 / 年（約 NT$41 / 月）</div>
         <ul>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pr_p1">免費方案的一切</span></li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pr_p2">AI 一句話記帳（語音與文字）</span></li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pr_p3">Apple Watch 記帳</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pr_p4">Siri 記帳，不必打開 App</span></li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pr_p5">用一句話查詢、修改、刪除</span></li>
         </ul>
       </div>
@@ -285,7 +288,7 @@
       </details>
       <details>
         <summary data-i18n="q5">支援哪些語言？</summary>
-        <p data-i18n="a5">介面提供繁體中文與英文。語音辨識會自動判斷你講的是哪種語言，中英夾雜也聽得準；AI 解析看得懂中文與英文的日常說法，例如「午餐 120」或「lunch 120」。</p>
+        <p data-i18n="a5">介面提供繁體中文、英文與日文。語音辨識會自動判斷你講的是哪種語言，夾雜多種語言也聽得準；AI 解析看得懂日常說法，例如「午餐 120」「lunch 120」或「ランチ 980円」。</p>
       </details>
       <details>
         <summary data-i18n="q6">換手機資料會不見嗎？</summary>

@@ -33,6 +33,7 @@
       <span class="lang-switch" role="group" aria-label="Language">
         <button type="button" data-lang="zh">繁中</button>
         <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="ja">日本語</button>
       </span>
     </nav>
   </div>
@@ -48,7 +49,7 @@
       <p class="updated">最後更新：2026 年 7 月 27 日</p>
 
       <div class="callout">
-        <p><strong>一句話總結：</strong>夥計沒有帳號系統，也沒有伺服器資料庫。你的支出紀錄只存在你的裝置與你自己的 iCloud，我們沒有副本、也無從讀取。唯一會離開裝置的，是你在使用 AI 記帳時說（或打）的那一句話——語音記帳時送出的是那一小段錄音，只用於當次辨識、用完即丟；iPhone 上可改成只用裝置端辨識。</p>
+        <p><strong>一句話總結：</strong>夥計沒有帳號系統，也沒有伺服器資料庫。你的支出紀錄只存在你的裝置與你自己的 iCloud，我們沒有副本、也無從讀取。唯一會離開裝置的，是你在使用 AI 記帳時說（或打）的那一句話——語音記帳時送出的是那一小段錄音，只用於當次辨識、用完即丟；iPhone 上可改成只用裝置端辨識（限 Apple 離線辨識支援的語言）。</p>
       </div>
 
       <h2>一、適用範圍</h2>
@@ -87,7 +88,7 @@
       </div>
       <p><strong>不會送出：</strong>你的姓名、Email、裝置識別碼、廣告識別碼、位置，以及你既有的任何一筆支出紀錄。若你只使用手動記帳，則不會有任何內容離開你的裝置。免費層在 iPhone 上不會呼叫 AI；Apple Watch 在尚未收到 iPhone 推來的方案狀態前，可能仍會送出一次——這是刻意的取捨，寧可讓付費使用者不被誤擋。</p>
 
-      <p><strong>語音辨識在哪裡做：</strong>iPhone 押住金幣時，App 會同時做兩件事——用 Apple 的裝置端語音辨識即時把文字顯示在畫面上，以及把同一段麥克風音訊錄成音檔。放開後<strong>預設把音檔送去雲端辨識</strong>；上傳失敗或沒有網路時，改用裝置端已經聽到的文字送出。之所以預設走雲端，是因為 Apple 的裝置端辨識一次只能綁定一種語言、沒有自動偵測語言的模式，雙語或中英夾雜的說法必然有一邊聽不準；雲端模型會自動判斷語言並處理語言切換。你可以在 App 內「設定 → 語音辨識 → 只用裝置端辨識」關掉雲端，錄音就完全不會離開你的手機（辨識品質則受上述限制）。</p>
+      <p><strong>語音辨識在哪裡做：</strong>iPhone 押住金幣時，App 會同時做兩件事——用 Apple 的裝置端語音辨識即時把文字顯示在畫面上，以及把同一段麥克風音訊錄成音檔。放開後<strong>預設把音檔送去雲端辨識</strong>；上傳失敗或沒有網路時，改用裝置端已經聽到的文字送出。之所以預設走雲端，是因為 Apple 的裝置端辨識一次只能綁定一種語言、沒有自動偵測語言的模式，雙語使用者、或一句話裡夾雜不同語言的說法必然有一邊聽不準；雲端模型會自動判斷語言並處理語言切換。你可以在 App 內「設定 → 語音辨識 → 只用裝置端辨識」關掉雲端，錄音就完全不會離開你的手機（可用的語言以 Apple 的離線辨識涵蓋範圍為限，辨識品質也受上述限制）。</p>
 
       <p><strong>Apple Watch：</strong>watchOS 沒有提供任何語音轉文字的 API，因此手錶上的語音記帳一律是把錄音送去雲端辨識。手錶會自己連線，不經過 iPhone。沒有網路時，錄音會暫存在手錶本機的待送佇列（最多 20 筆、保留 7 天），回到線上後自動送出；未送出前不會被記成一筆帳。</p>
       <p><strong>手錶會在你打開 App 時主動開始錄音：</strong>這是為了讓你抬起手腕、講一句、放下就好，全程不必碰螢幕（點 Smart Stack 卡片進來也一樣）。三件事值得你知道：每次打開<strong>只會自動錄第一次</strong>，之後要再記一筆仍是押住金幣；你說完停下來它就結束錄音，<strong>如果從頭到尾沒聽到人聲，那段錄音會直接在手錶上丟掉，不會被上傳</strong>；以及你可以在 iPhone 的「設定 → Apple Watch → 手錶開啟就自動錄音」關掉它，關掉後一律改用押住金幣。手錶未取得麥克風權限時不會自動錄音，也不會為此主動跳出權限請求。</p>
@@ -107,7 +108,7 @@
       <ul>
         <li><strong>刪除全部資料：</strong>App 內「設定 → 刪除所有資料」，經兩次確認後永久刪除本機與 iCloud 上的所有支出，無法復原。</li>
         <li><strong>沒有帳號要刪：</strong>因為沒有帳號系統，也就沒有需要另行刪除的伺服器資料。</li>
-        <li><strong>不想讓錄音離開手機：</strong>iPhone 上到「設定 → 語音辨識」開啟「只用裝置端辨識」，語音就改由裝置端處理，只送出辨識後的文字。</li>
+        <li><strong>不想讓錄音離開手機：</strong>iPhone 上到「設定 → 語音辨識」開啟「只用裝置端辨識」，語音就改由裝置端處理，只送出辨識後的文字（限 Apple 離線辨識支援的語言；不支援的語言開啟後語音記帳會停用）。</li>
         <li><strong>不想用 AI：</strong>只使用手動記帳，就不會有任何內容離開裝置。</li>
         <li><strong>法定權利：</strong>你在個人資料保護法、GDPR 等法規下的查詢、更正與刪除權，因資料就在你手上，可直接於 App 內完成；需要協助請來信。</li>
       </ul>
@@ -135,7 +136,7 @@
       <p class="updated">Last updated: 27 July 2026</p>
 
       <div class="callout">
-        <p><strong>In one sentence:</strong> Hooji has no accounts and no server database. Your expenses exist only on your device and in your own iCloud — we hold no copy and cannot read them. The only thing that ever leaves your device is the single sentence you say or type when you use AI logging — for voice entries, the short clip of you saying it, used for that one transcription and then discarded. On iPhone you can switch to on-device recognition only, and then even that stays on your phone.</p>
+        <p><strong>In one sentence:</strong> Hooji has no accounts and no server database. Your expenses exist only on your device and in your own iCloud — we hold no copy and cannot read them. The only thing that ever leaves your device is the single sentence you say or type when you use AI logging — for voice entries, the short clip of you saying it, used for that one transcription and then discarded. On iPhone you can switch to on-device recognition only, and then even that stays on your phone — for the languages Apple covers offline.</p>
       </div>
 
       <h2>1. Scope</h2>
@@ -174,7 +175,7 @@
       </div>
       <p><strong>Not sent:</strong> your name, email, device identifiers, advertising identifiers, location, or any of your existing expenses. If you only log manually, nothing leaves your device at all. On the free tier your iPhone does not call the AI; an Apple Watch may still send one request before it has received the plan status pushed from your iPhone — a deliberate trade-off, so that paying users are never wrongly blocked.</p>
 
-      <p><strong>Where speech is recognised:</strong> while you hold the coin on iPhone, the app does two things at once — it runs Apple's on-device speech recognition so you can watch the words appear, and it records the same microphone input to an audio file. When you release, <strong>the clip is sent for cloud transcription by default</strong>; if the upload fails or you have no connection, the text heard on device is sent instead. Cloud transcription is the default because Apple's on-device recogniser can only be bound to one language at a time and has no automatic language detection, so bilingual speech — or a sentence that switches languages halfway — is always misheard in one direction. The cloud model works out the language itself and handles the switching. You can turn the cloud off under Settings → Speech recognition → On-device recognition only, after which no audio leaves your phone (with the language limitation above).</p>
+      <p><strong>Where speech is recognised:</strong> while you hold the coin on iPhone, the app does two things at once — it runs Apple's on-device speech recognition so you can watch the words appear, and it records the same microphone input to an audio file. When you release, <strong>the clip is sent for cloud transcription by default</strong>; if the upload fails or you have no connection, the text heard on device is sent instead. Cloud transcription is the default because Apple's on-device recogniser can only be bound to one language at a time and has no automatic language detection, so bilingual speech — or a sentence that switches languages halfway — is always misheard in one direction. The cloud model works out the language itself and handles the switching. You can turn the cloud off under Settings → Speech recognition → On-device recognition only, after which no audio leaves your phone (only for the languages Apple covers offline, and with the language limitation above).</p>
 
       <p><strong>Apple Watch:</strong> watchOS offers no speech-to-text API at all, so voice logging on the watch always sends the clip for cloud transcription. The watch connects on its own and does not go through your iPhone. With no connection the clip waits in a queue on the watch itself (up to 20 clips, kept for 7 days) and is sent automatically once you are back online; nothing is logged as an expense until it has been sent.</p>
       <p><strong>The watch starts listening when you open the app:</strong> this is so you can raise your wrist, say one sentence and lower it again without touching the screen (the same happens when you tap the Smart Stack card). Three things worth knowing: it does this <strong>only once per launch</strong> — after that you press and hold the coin as usual; it stops recording when you stop speaking, and <strong>if it never hears any speech the clip is discarded on the watch and is never uploaded</strong>; and you can turn it off under Settings → Apple Watch → Auto-record on Apple Watch on your iPhone, after which press-and-hold is the only way to record. The watch will not auto-record without microphone permission, and never raises a permission prompt on its own to get it.</p>
@@ -194,7 +195,7 @@
       <ul>
         <li><strong>Delete everything:</strong> Settings → Delete all data. After two confirmations it permanently erases every expense on the device and in iCloud. This cannot be undone.</li>
         <li><strong>No account to delete:</strong> there is no account system, so there is no server-side data left to remove.</li>
-        <li><strong>Keep recordings on your phone:</strong> on iPhone, turn on Settings → Speech recognition → On-device recognition only. Speech is then handled on the device and only the recognised text is sent.</li>
+        <li><strong>Keep recordings on your phone:</strong> on iPhone, turn on Settings → Speech recognition → On-device recognition only. Speech is then handled on the device and only the recognised text is sent. This covers the languages Apple supports offline; for a language it does not support, voice logging is disabled while the setting is on.</li>
         <li><strong>Prefer no AI:</strong> use manual logging only and nothing ever leaves your device.</li>
         <li><strong>Legal rights:</strong> rights of access, rectification and erasure under GDPR, Taiwan's Personal Data Protection Act and similar laws can be exercised directly in the app, because the data is in your hands. Email us if you would like help.</li>
       </ul>
@@ -214,6 +215,96 @@
 
       <h2>11. Contact</h2>
       <p>Questions about privacy? Email <a href="mailto:hooji.app@gmail.com">hooji.app@gmail.com</a>.</p>
+    </div>
+
+    <!-- ==================== 日本語 ==================== -->
+    <!-- 事実の記述（何がデバイスを出るか、保持期間、誰がアクセスできるか）は
+         繁體中文版・English 版と完全に一致させること。読みやすさのために
+         事実を変えてはならない。ASC の Privacy Policy URL はこのページ。 -->
+    <div data-lang-only="ja">
+      <h1>プライバシーポリシー</h1>
+      <p class="updated">最終更新：2026 年 7 月 27 日</p>
+
+      <div class="callout">
+        <p><strong>ひと言で：</strong>Hooji にはアカウント機能もサーバーデータベースもありません。あなたの支出はお使いのデバイスとご自身の iCloud にのみ存在し、私たちに複製はなく、読み取ることもできません。デバイスから出るのは、AI で記録するときに話した（または入力した）そのひと言だけです。音声で記録する場合は、それを話している短い録音が送られ、その一回の認識にだけ使われたあと破棄されます。iPhone では「デバイス上の認識のみ」に切り替えることもできます（Apple がオフライン認識に対応している言語に限ります）。</p>
+      </div>
+
+      <h2>1. 適用範囲</h2>
+      <p>本ポリシーは、iPhone および Apple Watch 向けアプリ「Hooji」と、本ウェブサイトに適用されます。Hooji は台湾を拠点とする個人開発者が開発・運営しています。連絡先：<a href="mailto:hooji.app@gmail.com">hooji.app@gmail.com</a>。</p>
+
+      <h2>2. 収集しないもの</h2>
+      <ul>
+        <li>会員登録もサインインもなく、ユーザーアカウントもパスワードもありません。</li>
+        <li>広告・行動分析・トラッキングの SDK は一切使用していません。アプリのプライバシーマニフェストでも、トラッキングは「なし」と申告しています。</li>
+        <li>氏名、メールアドレス、電話番号、連絡先、位置情報、写真、広告識別子は収集しません。</li>
+        <li>支出の記録そのもの——金額・店舗・カテゴリ・メモ——も収集しません。</li>
+      </ul>
+
+      <h2>3. デバイスに残るデータ</h2>
+      <ul>
+        <li><strong>支出</strong>（金額、通貨、内容、店舗、カテゴリ、日時、メモ、支払い方法）は、デバイス内のローカルデータベースに保存されます。</li>
+        <li>デバイスが iCloud にサインインしている場合、これらの記録は Apple の <strong>CloudKit プライベートデータベース</strong>を通じて<strong>あなた自身の</strong>デバイス間で同期されます。そのデータはあなたの Apple アカウントの下にあり、私たちにアクセス権はありません。</li>
+        <li><strong>サブスクリプションの状態</strong>は Apple の StoreKit から取得します。<strong>お試しの開始日</strong>は、7 日間のお試しをすでに使ったかどうかを判断するために、ご自身の iCloud キーバリューストアとデバイスのキーチェーンに保存されます。どちらも私たちに送信されることはありません。</li>
+      </ul>
+
+      <h2>4. AI で記録するときに送信されるもの</h2>
+      <p>データがデバイスから出るのは、AI のひと言記録（音声または文字）を使うときだけです。各リクエストに含まれるのは次のとおりです。</p>
+      <div class="table-scroll">
+      <table>
+        <thead><tr><th>送信されるもの</th><th>理由</th></tr></thead>
+        <tbody>
+          <tr><td>話した（または入力した）そのひと言</td><td>最大 200 文字。文字で記録する場合、および iPhone で「デバイス上の認識のみ」を選んでいる場合は、この 1 行のテキストが送られます。</td></tr>
+          <tr><td>音声で記録する場合の短い録音</td><td>そのひと言を話しているあいだに録音された短い音声（通常 5 秒程度）で、文字に変換したうえで解析されます。<strong>その一回の認識にだけ使い、終わったら破棄します</strong>。保存も、索引付けも、あなたに関する情報との紐付けも行いません。録音がいつ始まり、いつ止まるかは下の 2 段落で説明しています。</td></tr>
+          <tr><td>送信時刻とタイムゾーン</td><td>「昨日のランチ」のような言い方を正しい日付に解決するために使います。</td></tr>
+          <tr><td>1 回限りのリクエスト識別子</td><td>ランダムに生成され、同じひと言が 2 件として記録されるのを防ぎます。個人には対応しません。</td></tr>
+          <tr><td>入力方法（音声／文字）</td><td>解析にのみ使用します。</td></tr>
+          <tr><td>記録に使う通貨</td><td>例：JPY。通貨を言わなかったときの既定値として使います。これがないと、台湾以外の利用者の最初の 1 件がすべて台湾ドルとして記録されてしまいます。</td></tr>
+          <tr><td>ロケールコード</td><td>例：ja-JP。AI が聞き返す必要があるとき、どの言語で尋ねるかを決めます。</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p><strong>送信されないもの：</strong>氏名、メールアドレス、デバイス識別子、広告識別子、位置情報、そしてこれまでに記録した支出。手動での記録だけを使う場合は、何もデバイスの外に出ません。無料プランでは iPhone から AI を呼び出しません。ただし Apple Watch は、iPhone から送られるプランの状態をまだ受け取っていない段階では 1 回だけ送信することがあります——これは意図的な判断で、有料の利用者を誤って止めないことを優先しています。</p>
+
+      <p><strong>音声認識をどこで行うか：</strong>iPhone でコインを長押ししているあいだ、アプリは 2 つのことを同時に行います。Apple のデバイス上の音声認識で聞き取った文字をその場に表示することと、同じマイク入力を音声ファイルに録音することです。指を離すと、<strong>既定ではその録音をクラウドの音声認識に送ります</strong>。アップロードに失敗した場合や接続がない場合は、デバイス上で聞き取ったテキストを代わりに送ります。既定でクラウドを使うのは、Apple のデバイス上の認識が一度に 1 つの言語しか設定できず、言語の自動判別もないためです。複数の言語を使う人、あるいは 1 つの文の途中で言語が切り替わる話し方では、どちらかが必ず正しく聞き取れません。クラウドのモデルは言語を自分で判別し、切り替わりにも対応します。アプリ内の「設定 → 音声認識 → デバイス上の認識のみ」でクラウドをオフにでき、その場合は音声が一切 iPhone の外に出ません（対応できるのは Apple のオフライン認識がカバーしている言語に限られ、認識の品質も上記の制約を受けます）。</p>
+
+      <p><strong>Apple Watch：</strong>watchOS には音声を文字に変換する API がまったく提供されていないため、Apple Watch での音声記録は常に録音をクラウドの音声認識に送ります。Apple Watch は自分で通信し、iPhone を経由しません。接続がないときは、録音は Apple Watch 内の送信待ちキューに一時保存され（最大 20 件、7 日間）、オンラインに戻ると自動的に送信されます。送信されるまで、支出として記録されることはありません。</p>
+      <p><strong>Apple Watch はアプリを開いたときに自分から録音を始めます：</strong>腕を上げて、ひと言話して、下ろすだけで済むようにするためです（Smart Stack のカードから開いたときも同じです）。知っておいていただきたいことが 3 つあります。自動で録音するのは<strong>起動ごとに一度だけ</strong>で、続けてもう 1 件記録するときはこれまでどおりコインを長押しします。話し終えて止まると録音も終わり、<strong>最初から最後まで人の声が聞こえなかった場合、その録音は Apple Watch 上で破棄され、アップロードされません</strong>。そして iPhone の「設定 → Apple Watch → Apple Watch で自動録音」からオフにでき、オフにすると常に長押しでの録音になります。マイクの許可が得られていない場合、Apple Watch は自動録音を行わず、そのために許可のダイアログを自分から出すこともありません。</p>
+
+      <h2>5. そのひと言（とその録音）を処理する事業者</h2>
+      <ul>
+        <li><strong>Cloudflare, Inc.</strong>（Cloudflare Workers）——ステートレスな中継です。役割は AI サービスのキーを預かってリクエストを転送することだけで、<strong>データベースへの書き込みもリクエスト内容の保存も行いません</strong>。音声は中継を通り抜けるストリームにすぎず、いかなるストレージにも書き込まれません（R2・KV・D1 は使っていません）。インフラ事業者として、Cloudflare が短期間の運用ログを生成することはあります。</li>
+        <li><strong>OpenAI, L.L.C.</strong>——音声からテキストへの変換と、意味の解析を実際に行います。<strong>音声認識</strong>には OpenAI の音声文字起こしエンドポイントを使用しており、このエンドポイントのデータ保持方針は<strong>モデルの学習に使用しない（training = No）、不正利用の監視のためにも保持しない（abuse monitoring = None）</strong>です。<strong>意味の解析</strong>では対話モデルを呼び出し、<strong>会話の保存を無効に設定</strong>しています。OpenAI の API データ利用ポリシーによれば、API 経由で送信された内容は既定ではモデルの学習に使用されませんが、不正利用の監視のために短期間保持される場合があります。</li>
+        <li><strong>Apple Inc.</strong>——iCloud 同期とサブスクリプションの取引。Apple 自身のプライバシーポリシーが適用されます。</li>
+      </ul>
+      <p>第三者が不正利用の監視のためにそのテキストを短期間保持する可能性があるため、アプリのプライバシーマニフェストではこれを「その他のユーザーコンテンツ」として正直に申告しています。音声で記録するときに送られる録音は「音声データ」として申告しており、いずれも用途は<strong>アプリの機能</strong>です。どちらも<strong>あなたの身元と紐付けられておらず、トラッキングにも使用しない</strong>と申告しています——リクエストにはいかなる利用者識別子も含まれません。</p>
+
+      <h2>6. 保持期間</h2>
+      <p>私たちにはデータベースがないため、保持するものがありません。中継はそのリクエストを転送し終えた時点で終了し、複製を残しません。音声で記録した録音はそのリクエストのなかで文字に変換されたあと消え、私たちの手元に音声ファイルは一切残りません。</p>
+
+      <h2>7. あなたの権利と操作</h2>
+      <ul>
+        <li><strong>すべてのデータを削除する：</strong>アプリ内の「設定 → すべてのデータを削除」。2 回の確認を経て、このデバイスと iCloud にあるすべての支出を完全に削除します。取り消せません。</li>
+        <li><strong>削除すべきアカウントはありません：</strong>アカウント機能がないため、別途削除が必要なサーバー側のデータもありません。</li>
+        <li><strong>録音を iPhone の外に出したくないとき：</strong>iPhone の「設定 → 音声認識」で「デバイス上の認識のみ」をオンにすると、音声はデバイス上で処理され、認識後のテキストだけが送信されます（Apple のオフライン認識が対応している言語に限ります。対応していない言語では音声での記録が無効になります）。</li>
+        <li><strong>AI を使いたくないとき：</strong>手動での記録だけを使えば、何もデバイスの外に出ません。</li>
+        <li><strong>法令上の権利：</strong>個人情報保護法や GDPR などに基づく開示・訂正・削除の権利は、データがあなたの手元にあるため、アプリ内で直接行使できます。サポートが必要な場合はメールでご連絡ください。</li>
+      </ul>
+
+      <h2>8. お子様について</h2>
+      <p>Hooji は 13 歳未満のお子様を対象としておらず、お子様の個人データを意図的に収集することもありません。</p>
+
+      <h2>9. セキュリティ</h2>
+      <ul>
+        <li>アプリと中継のあいだの通信は、すべて HTTPS で暗号化されています。</li>
+        <li>AI サービスのキーは中継の暗号化された環境変数にのみ存在し、<strong>アプリに同梱して配布することは決してありません</strong>。アプリに AI サービスのキーは含まれていません。</li>
+        <li>本番環境では、話した内容や入力した内容の全文を記録せず、音声もいかなるストレージにも書き込みません。</li>
+      </ul>
+
+      <h2>10. 本ポリシーの変更</h2>
+      <p>本ポリシーに実質的な変更があった場合は、このページの「最終更新」の日付を更新します。重要な変更についてはアプリ内でもお知らせします。</p>
+
+      <h2>11. お問い合わせ</h2>
+      <p>プライバシーに関するご質問は <a href="mailto:hooji.app@gmail.com">hooji.app@gmail.com</a> までメールでお願いします。</p>
     </div>
   </div>
 </article>

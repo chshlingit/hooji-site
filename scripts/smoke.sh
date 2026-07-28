@@ -53,9 +53,9 @@ check() { # check <說明> <eq|min|none> <次數> <字串> <網址>
 
 echo "煙霧測試（headless Chrome）"
 
-# 每一頁在每種語言下，都必須剛好有一個語言區塊被啟用（避免整頁空白或兩種語言同時出現）。
+# 每一頁在每種語言下，都必須剛好有一個語言區塊被啟用（避免整頁空白或多種語言同時出現）。
 for page in privacy terms support 404; do
-  for lang in zh en; do
+  for lang in zh en ja; do
     check "$page.html?lang=$lang 顯示 $lang 區塊" eq 1 \
       "data-lang-only=\"$lang\" class=\"is-active\"" \
       "http://localhost:$PORT/$page.html?lang=$lang"
@@ -68,10 +68,16 @@ check "index.html?lang=en 套用英文字串" min 1 "Getting ready for the App S
 check "index.html?lang=en 沒有殘留中文" none 0 "正在準備上架" "http://localhost:$PORT/index.html?lang=en"
 check "index.html?lang=zh 套用中文字串" min 1 "正在準備上架" "http://localhost:$PORT/index.html?lang=zh"
 check "index.html?lang=zh 沒有殘留英文" none 0 "Getting ready for the App Store" "http://localhost:$PORT/index.html?lang=zh"
+check "index.html?lang=ja 套用日文字串" min 1 "公開を準備しています" "http://localhost:$PORT/index.html?lang=ja"
+check "index.html?lang=ja 沒有殘留中文" none 0 "正在準備上架" "http://localhost:$PORT/index.html?lang=ja"
 
 # 上架前的守門員：首頁絕不能洩漏定價或功能清單（那些只在 home-full.html）
 check "index.html 沒有洩漏定價" none 0 "NT\$60" "http://localhost:$PORT/index.html"
 check "home-full.html 仍然可用（上架後要換回去）" min 1 "說一句話" "http://localhost:$PORT/home-full.html?lang=zh"
+
+# 三語都要真的切得動：日文版必須出現日文價格、且不殘留台幣。
+check "home-full.html?lang=ja 套用日文定價" min 1 "¥500" "http://localhost:$PORT/home-full.html?lang=ja"
+check "home-full.html?lang=ja 沒有殘留台幣" none 0 "NT\$" "http://localhost:$PORT/home-full.html?lang=ja"
 
 if [ "$fails" -gt 0 ]; then
   echo "✗ 煙霧測試失敗：$fails 項"
