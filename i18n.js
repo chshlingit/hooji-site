@@ -50,7 +50,10 @@
       how_h2: '三個動作，一筆帳',
       how_sub: '記一筆帳不該是填表。夥計把「說出來」到「記好了」之間的每一步都拿掉。',
       s1_h: '押住金幣，說一句話',
-      s1_p: '在 iPhone 或 Apple Watch 上押住金幣說話，放開就送出。辨識會自動判斷你講的是哪種語言，一句話裡夾雜著講也聽得準；那段錄音只用於這一次辨識，轉成文字後就丟掉。',
+      // 「先顯示聽到的內容，正式結果到了再換上」＝ iPhone 的兩段式顯示（VoiceInputModel
+      // 的 endHoldForUpload ＋ AssistantModel 的臨時泡泡）。手錶沒有裝置端辨識，
+      // 所以這句話**只能講 iPhone**。不寫任何「快幾秒」的量化宣稱（沒有實測數據）。
+      s1_p: '在 iPhone 或 Apple Watch 上押住金幣說話，放開就送出——iPhone 上會先把聽到的內容顯示出來，整理好的結果到了再原地換上，不必盯著轉圈。辨識會自動判斷你講的是哪種語言，一句話裡夾雜著講也聽得準；那段錄音只用於這一次辨識，轉成文字後就丟掉。',
       s2_h: 'AI 只看到那一句話',
       s2_p: '只有那句話會送去理解成金額、內容、分類與時間。AI 看不到你的帳目、碰不到你的資料庫，也不能自己動手。',
       s3_h: '你的裝置寫下這筆帳',
@@ -63,13 +66,27 @@
       f1_h: '一句話記帳',
       f1_p: '說或打一句「午餐牛肉麵 180」，金額、內容、時間自動就位。缺分類就用「其他」，不會回頭問你一堆問題。',
       f2_h: 'Apple Watch 抬手就記',
-      f2_p: '錶面上押住金幣說一句，放開就送出。手錶自己連網完成辨識，iPhone 不必在旁邊；沒有網路時先留在手錶上排隊，回到線上自動送出。',
+      // 「從 Smart Stack 卡片點進來直接開始聽」是 Plus 的行為（錄音要 AI 權益），
+      // 所以寫在這張 Plus 卡，不寫在講「看數字」的 f3（那張是免費）。
+      f2_p: '錶面上押住金幣說一句，放開就送出；從 Smart Stack 卡片點進來時，App 會直接開始聽。手錶自己連網完成辨識，iPhone 不必在旁邊；沒有網路時先留在手錶上排隊，回到線上自動送出。',
       f3_h: '今天花多少，抬腕就看到',
-      // Smart Stack 卡片（HoojiWatchWidget）：顯示今日花費、點卡片直接開始錄音——兩者皆已實作。
+      // **這張卡是免費層**：Smart Stack 卡片（HoojiWatchWidget）與手錶主畫面的
+      // 本月／今日數字都不經過任何權益判斷（AccessLevel.isAIEnabled 只擋 AI 一句話記帳）。
       // 1.0 不宣傳 Siri 語音喚起（中文喚起實機失敗），等之後版本修好再加回。
-      f3_p: '夥計的 Smart Stack 卡片把今天花了多少放在錶面上，抬腕轉一下數位錶冠就看到。想記一筆就點一下卡片，App 會直接開始聽，說完就記好。',
+      f3_p: '夥計的 Smart Stack 卡片把今天花了多少放在錶面上，抬腕轉一下數位錶冠就看到。打開手錶上的夥計，本月與今日的金額也在最上面——看自己的數字不必訂閱。',
       f4_h: '也能查、能改、能刪',
-      f4_p: '「這個月吃飯花多少？」、「把剛剛那筆改成 250」。查詢在你的裝置上跑；修改與刪除一定先讓你確認才動手。',
+      // 手錶只做得到「修改／刪除」：查詢在錶上仍回 watch.searchUnsupported，
+      // 所以括號那句不可以刪掉。錶上的兩段式＝iPhone 背景查候選 → 錶上確認 → 才執行。
+      f4_p: '「這個月吃飯花多少？」、「把剛剛那筆改成 250」。查詢在你的裝置上跑；修改與刪除一定先讓你確認才動手。修改與刪除在 Apple Watch 上說也可以：錶上會先秀出比對到的那一筆，按下確認才執行（查詢結果仍要在 iPhone 上看）。',
+      f7_h: '打開就看到現在花多少',
+      // iPhone 首頁摘要卡（HomeSummaryCard）：放在 AI 權益判斷之外＝免費。
+      // 「有收入才另列」對應程式的 `if income > 0`；統計分頁本身也沒有權益閘門。
+      f7_p: '夥計分頁最上面常駐本月與今日的支出，打開 App 一眼就知道現在的狀況；有收入才會另外列一行。點一下就跳到統計，看分類佔比與趨勢。',
+      f8_h: '手錶上核對剛剛那筆',
+      // 最近記錄頁（WatchRecentListView）：資料是 iPhone 推來的最近**寫入** 10 筆，
+      // 左滑刪除會先跳確認，執行交由 iPhone（sendMessage 喚背景，不必開 App，
+      // 但**需要兩台裝置連得上**——這條不可省略，否則變成不實描述）。
+      f8_p: '在手錶上轉一下數位錶冠，就從錄音畫面切到「最近記錄」，最近 10 筆一目了然。記錯了就左滑刪除，確認之後由 iPhone 完成——手錶和 iPhone 連得上就行，不必打開 App。',
       f5_h: '手動記帳永遠免費',
       f5_p: '不想開口、或不想訂閱，就自己新增一筆。清單、編輯、刪除完全免費，也完全離線可用。',
       f6_h: 'iCloud 同步，說刪就刪',
@@ -95,6 +112,9 @@
       pr_sub: '試用不必先綁付款方式，也不會自動扣款。到期只是降級成免費層，資料一筆都不會少。',
       pr_free: '免費', pr_free_price: 'NT$0', pr_free_note: '永久免費，不需要帳號',
       pr_f1: '手動記帳無限，離線可用',
+      // 免費也看得到自己的數字：iPhone 首頁摘要卡、統計分頁、手錶主畫面與
+      // Smart Stack 卡片、手錶最近記錄頁，全都不經權益判斷。
+      pr_f5: '本月／今日與最近記錄隨時看得到',
       pr_f2: 'iCloud 跨裝置同步',
       pr_f3: '隨時永久刪除全部資料',
       pr_f4: 'AI 一句話記帳（試用期後關閉）',
@@ -106,7 +126,7 @@
       pr_yearly: '或 NT$490 / 年（約 NT$41 / 月）',
       pr_p1: '免費方案的一切',
       pr_p2: 'AI 一句話記帳（語音與文字）',
-      pr_p3: 'Apple Watch 記帳',
+      pr_p3: 'Apple Watch 記帳，並用一句話修改、刪除',
       pr_p5: '用一句話查詢、修改、刪除',
       pr_trial: '<strong>試用怎麼算：</strong>第一次安裝後 7 天內是完整的 Plus，不必先綁付款方式、不會自動扣款、也不用取消。到期後 AI 記帳關閉，其餘功能與全部資料留著，想要再訂閱。',
       pr_price_note: '實際價格與幣別以你的 App Store 地區顯示為準。訂閱為自動續訂，於每期結束前 24 小時內扣款，可隨時在 App Store 帳號設定取消。',
@@ -120,7 +140,10 @@
       q3: '我的帳目會被上傳嗎？',
       a3: '不會。離開裝置的只有你當次說的那一句話——語音記帳時是那段短錄音，辨識完就丟。金額、商家、分類這些紀錄只存在你的裝置與你自己的 iCloud。',
       q4: '支援哪些裝置？',
-      a4: 'iPhone（iOS 17 以上）與 Apple Watch（watchOS 10 以上）。手錶記帳只需要手錶能連上網路，iPhone 不必在旁邊。',
+      // 記帳與「修改／刪除」的條件不同，不可混為一談：記帳只要手錶連得上網路
+      //（iPhone 不在範圍內時結果會排進背景佇列補上），但修改／刪除是互動流程、
+      // 不排隊，需要 sendMessage 當下就到得了 iPhone。
+      a4: 'iPhone（iOS 17 以上）與 Apple Watch（watchOS 10 以上）。手錶記帳只需要手錶能連上網路，iPhone 不必在旁邊；用語音修改、刪除，或在手錶上刪掉某一筆，則需要手錶和 iPhone 連得上（iPhone 不必打開 App）。',
       q5: '支援哪些語言？',
       a5: '介面提供繁體中文、英文與日文。語音辨識會自動判斷你講的是哪種語言，夾雜多種語言也聽得準；AI 解析看得懂日常說法，例如「午餐 120」「lunch 120」或「ランチ 980円」。',
       q6: '換手機資料會不見嗎？',
@@ -175,7 +198,7 @@
       how_h2: 'Three moves, one expense',
       how_sub: 'Logging an expense should not be filling in a form. Hooji removes every step between saying it and having it logged.',
       s1_h: 'Hold the coin and speak',
-      s1_p: 'Hold the coin on your iPhone or Apple Watch, say one sentence, release to send. Transcription works out which language you spoke on its own, so switching mid-sentence still comes out right. The recording is used for that one transcription and then thrown away.',
+      s1_p: 'Hold the coin on your iPhone or Apple Watch, say one sentence, release to send — on iPhone what it heard shows up straight away and is swapped in place once the tidied-up result lands, so you are never left watching a spinner. Transcription works out which language you spoke on its own, so switching mid-sentence still comes out right. The recording is used for that one transcription and then thrown away.',
       s2_h: 'The AI only sees that sentence',
       s2_p: 'Only that sentence is sent to be understood as an amount, a description, a category and a time. The AI never sees your expenses, never touches your database, and cannot act on its own.',
       s3_h: 'Your device writes it down',
@@ -188,11 +211,15 @@
       f1_h: 'One sentence, one expense',
       f1_p: 'Say or type “lunch beef noodles $12” and the amount, description and time fall into place. Missing category defaults to “Other” — you are never interrogated.',
       f2_h: 'Log from your wrist',
-      f2_p: 'Hold the coin on your watch, say it, release. The watch goes online by itself — your iPhone does not have to be nearby. With no connection it queues on the watch and sends itself once you are back online.',
+      f2_p: 'Hold the coin on your watch, say it, release. Open it from the Smart Stack card and the app is already listening. The watch goes online by itself — your iPhone does not have to be nearby. With no connection it queues on the watch and sends itself once you are back online.',
       f3_h: 'Today at a glance, on your wrist',
-      f3_p: 'The Hooji card in the Smart Stack shows what you have spent today — raise your wrist, turn the Digital Crown, and it is right there. Tap the card and the app opens already listening; say it and it is logged.',
+      f3_p: 'The Hooji card in the Smart Stack shows what you have spent today — raise your wrist, turn the Digital Crown, and it is right there. Open Hooji on the watch and this month and today sit at the top of the screen. Looking at your own numbers never needs a subscription.',
       f4_h: 'Search, edit and delete too',
-      f4_p: '“How much did I spend on food this month?” or “change that last one to 250”. Searches run on your device; edits and deletions always ask you to confirm first.',
+      f4_p: '“How much did I spend on food this month?” or “change that last one to 250”. Searches run on your device; edits and deletions always ask you to confirm first. Editing and deleting work from your Apple Watch too: it shows you the entry it matched, and nothing happens until you tap confirm. (Search results are still read on the iPhone.)',
+      f7_h: 'Open it, see where you are',
+      f7_p: 'This month and today sit at the top of the Assistant tab, so you know where you stand the moment you open Hooji; income only gets a line of its own when there is some. Tap it to jump to the statistics.',
+      f8_h: 'Check the last few from your wrist',
+      f8_p: 'Turn the Digital Crown on your watch and the recording screen gives way to Recent — the last 10 entries at a glance. Got one wrong? Swipe to delete, confirm, and your iPhone does the rest. It only has to be within reach, not open.',
       f5_h: 'Manual logging stays free',
       f5_p: 'Do not feel like talking, or do not want a subscription? Add it yourself. Listing, editing and deleting are free forever and work fully offline.',
       f6_h: 'iCloud sync, and a real delete',
@@ -216,6 +243,7 @@
       pr_sub: 'The trial needs no payment details and never charges you. When it ends you simply drop to the free tier — not a single expense is lost.',
       pr_free: 'Free', pr_free_price: '$0', pr_free_note: 'Free forever, no account needed',
       pr_f1: 'Unlimited manual logging, works offline',
+      pr_f5: 'See this month, today and your recent entries any time',
       pr_f2: 'iCloud sync across your devices',
       pr_f3: 'Permanently delete everything, any time',
       pr_f4: 'AI one-sentence logging (off after the trial)',
@@ -227,7 +255,7 @@
       pr_yearly: 'or $14.99 / year (about $1.25 / month)',
       pr_p1: 'Everything in Free',
       pr_p2: 'AI one-sentence logging (voice and text)',
-      pr_p3: 'Logging from Apple Watch',
+      pr_p3: 'Logging from Apple Watch, plus voice edits and deletes',
       pr_p5: 'Search, edit and delete by sentence',
       pr_trial: '<strong>How the trial works:</strong> the first 7 days after you install are full Plus — no payment details, no automatic charge, nothing to cancel. When it ends, AI logging switches off; everything else and all of your data stays. Subscribe when you want it back.',
       pr_price_note: 'Actual price and currency are whatever your App Store region shows. Subscriptions renew automatically and are billed within 24 hours before each period ends; cancel any time in your App Store account settings.',
@@ -241,7 +269,7 @@
       q3: 'Are my expenses uploaded anywhere?',
       a3: 'No. The only thing that leaves your device is the one sentence you said or typed — for voice logging that is the short recording of it, discarded once transcribed. Amounts, merchants and categories exist only on your device and in your own iCloud.',
       q4: 'Which devices are supported?',
-      a4: 'iPhone (iOS 17 or later) and Apple Watch (watchOS 10 or later). Logging from the watch only needs the watch to be online — your iPhone does not have to be nearby.',
+      a4: 'iPhone (iOS 17 or later) and Apple Watch (watchOS 10 or later). Logging from the watch only needs the watch to be online — your iPhone does not have to be nearby. Editing or deleting from the watch does need the two to be in reach of each other, though your iPhone does not have to be open.',
       q5: 'Which languages are supported?',
       a5: 'The interface is available in English, Traditional Chinese and Japanese. Transcription detects the language you spoke automatically and handles switching between languages mid-sentence; the AI understands everyday phrasing in each, such as “lunch 120”, 「午餐 120」 or 「ランチ 980円」.',
       q6: 'Will I lose my data when I change phone?',
@@ -304,7 +332,7 @@
       how_h2: '3 つの動作で、1 件の記録',
       how_sub: '家計簿をつけるのに、フォームを埋める必要はありません。Hooji は「話す」から「記録できた」までの手順をすべて取り除きました。',
       s1_h: 'コインを長押しして、ひと言',
-      s1_p: 'iPhone か Apple Watch でコインを長押しして話し、離すと送信されます。話した言語は自動で判別するので、1 つの文に複数の言語が混ざっても正しく聞き取れます。その音声はこの一回の認識にだけ使い、文字にしたあとは破棄します。',
+      s1_p: 'iPhone か Apple Watch でコインを長押しして話し、離すと送信されます。iPhone では聞き取った内容がすぐに表示され、整理された結果が届くとその場で置き換わるので、くるくる回る表示を眺めて待つことはありません。話した言語は自動で判別するので、1 つの文に複数の言語が混ざっても正しく聞き取れます。その音声はこの一回の認識にだけ使い、文字にしたあとは破棄します。',
       s2_h: 'AI が受け取るのは、そのひと言だけ',
       s2_p: '送られるのは、金額・内容・カテゴリ・日時として読み取るための、そのひと言だけです。AI があなたの支出を見ることも、データベースに触れることも、自分で操作することもできません。',
       s3_h: '書き込むのは、あなたのデバイス',
@@ -317,12 +345,18 @@
       f1_h: 'ひと言で、1 件の記録',
       f1_p: '「今日のランチ ラーメン 980円」と話すか入力するだけで、金額・内容・日時が収まります。カテゴリがわからないときは「その他」になり、あれこれ聞き返すことはありません。',
       f2_h: 'Apple Watch なら、腕を上げるだけ',
-      f2_p: '手首の上でコインを長押しして、ひと言。離すと送信されます。Apple Watch が自分で通信して聞き取るので、iPhone が近くにある必要はありません。接続がないときは Apple Watch に保存され、オンラインに戻ると自動で送信します。',
+      f2_p: '手首の上でコインを長押しして、ひと言。離すと送信されます。Smart Stack のカードから開いたときは、アプリがそのまま聞き取りを始めます。Apple Watch が自分で通信して聞き取るので、iPhone が近くにある必要はありません。接続がないときは Apple Watch に保存され、オンラインに戻ると自動で送信します。',
       f3_h: 'Smart Stack に、今日の支出',
-      // Smart Stack カード（HoojiWatchWidget）：今日の支出を表示、タップで録音開始——どちらも実装済み。
-      f3_p: 'Smart Stack の Hooji カードに、今日いくら使ったかが表示されます。腕を上げて Digital Crown を回すだけ。カードをタップすればアプリが開いてすぐに聞き取りを始めるので、あとはひと言話すだけです。',
+      // **このカードは無料プラン**：Smart Stack カード（HoojiWatchWidget）も
+      // Apple Watch のホームの今月／今日も、権限の判定を通りません
+      //（AccessLevel.isAIEnabled が止めるのは AI のひと言記録だけ）。
+      f3_p: 'Smart Stack の Hooji カードに、今日いくら使ったかが表示されます。腕を上げて Digital Crown を回すだけ。Apple Watch で Hooji を開けば、今月と今日の金額も画面の一番上にあります。自分の数字を見るのに、サブスクリプションは必要ありません。',
       f4_h: '調べる・変更する・削除する',
-      f4_p: '「今月の食費はいくら？」「さっきのを 250 に変更」。検索はあなたのデバイス上で実行され、変更と削除は必ず先に確認します。',
+      f4_p: '「今月の食費はいくら？」「さっきのを 250 に変更」。検索はあなたのデバイス上で実行され、変更と削除は必ず先に確認します。変更と削除は Apple Watch から話しても行えます。一致した記録が Apple Watch に表示され、確定を押すまで実行されません（検索結果の確認は iPhone で行います）。',
+      f7_h: '開いた瞬間に、いまの状況',
+      f7_p: 'Hooji のタブの一番上に今月と今日の支出が常に表示され、アプリを開いた瞬間にいまの状況がわかります。収入は、あるときだけ別の行に表示されます。タップすると統計に移動します。',
+      f8_h: 'Apple Watch で直前の記録を確認',
+      f8_p: 'Apple Watch で Digital Crown を回すと、録音の画面から「最近の記録」に切り替わり、直近 10 件をひと目で確認できます。間違えたときは左にスワイプして削除し、確定すると iPhone 側で実行されます。iPhone は通信できる範囲にあれば十分で、開いておく必要はありません。',
       f5_h: '手動での記録はずっと無料',
       f5_p: '話したくないとき、サブスクリプションを使いたくないときは、自分で 1 件追加できます。一覧・編集・削除はずっと無料で、オフラインでも使えます。',
       f6_h: 'iCloud 同期と、確実な削除',
@@ -346,6 +380,7 @@
       pr_sub: 'お試しに支払い情報の登録は不要で、課金されることもありません。期間が終わっても無料プランに切り替わるだけで、記録は 1 件も失われません。',
       pr_free: '無料', pr_free_price: '¥0', pr_free_note: 'ずっと無料、アカウント不要',
       pr_f1: '手動での記録は無制限、オフラインでも',
+      pr_f5: '今月・今日・最近の記録をいつでも確認',
       pr_f2: 'デバイス間の iCloud 同期',
       pr_f3: 'すべてのデータをいつでも完全に削除',
       pr_f4: 'AI のひと言記録（お試し期間の終了後はオフ）',
@@ -357,7 +392,7 @@
       pr_yearly: 'または年額 ¥4,000（月あたり約 ¥333）',
       pr_p1: '無料プランのすべて',
       pr_p2: 'AI のひと言記録（音声でも文字でも）',
-      pr_p3: 'Apple Watch からの記録',
+      pr_p3: 'Apple Watch からの記録と、音声での変更・削除',
       pr_p5: 'ひと言で検索・変更・削除',
       pr_trial: '<strong>お試しの仕組み：</strong>インストールから 7 日間は Plus のすべてが使えます。支払い情報の登録は不要、自動的な課金もなく、解約の手続きもいりません。期間が終わると AI 記録はオフになりますが、それ以外の機能とすべてのデータはそのまま残ります。必要になったときに登録してください。',
       pr_price_note: '実際の価格と通貨は、お使いの App Store の地域の表示に従います。サブスクリプションは自動更新で、各期間の終了 24 時間前までに課金されます。App Store のアカウント設定からいつでも解約できます。',
@@ -371,7 +406,7 @@
       q3: '支出はどこかにアップロードされますか？',
       a3: 'いいえ。デバイスから出るのは、そのとき話した（または入力した）ひと言だけです。音声で記録する場合はその短い録音で、文字にしたあとは破棄します。金額・店舗・カテゴリといった記録は、お使いのデバイスとご自身の iCloud にのみ存在します。',
       q4: '対応している機種は？',
-      a4: 'iPhone（iOS 17 以降）と Apple Watch（watchOS 10 以降）です。Apple Watch での記録は Apple Watch がインターネットに接続できれば十分で、iPhone が近くにある必要はありません。',
+      a4: 'iPhone（iOS 17 以降）と Apple Watch（watchOS 10 以降）です。Apple Watch での記録は Apple Watch がインターネットに接続できれば十分で、iPhone が近くにある必要はありません。ただし Apple Watch から変更・削除を行うときは、2 つのデバイスが通信できる範囲にある必要があります（iPhone を開いておく必要はありません）。',
       q5: '対応している言語は？',
       a5: 'アプリの表示は日本語・繁体字中国語・英語に対応しています。音声認識は話した言語を自動で判別し、1 つの文の途中で切り替わっても聞き取れます。AI は日常的な言い方を読み取ります。たとえば「ランチ 980円」「午餐 120」「lunch 120」などです。',
       q6: '機種変更するとデータは消えますか？',

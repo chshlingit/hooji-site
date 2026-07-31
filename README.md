@@ -106,8 +106,12 @@ python3 scripts/make-og.py     # 需要 Pillow
 
 1. **只描述已經實作的功能。** 寫出還沒做好的東西會踩 App Review 2.3.1（不實描述），
    也會讓付費使用者拿不到承諾的東西。目前 Plus 賣的是：AI 一句話記帳（語音／文字）、
-   Apple Watch（含 Smart Stack 卡片）、自然語言查／改／刪；免費層是手動記帳、iCloud 同步、
-   刪除全部資料。**Siri 語音喚起在 1.0 全站不宣傳**（中文喚起實機失敗、App 端修不了），
+   Apple Watch 語音記帳、自然語言查／改／刪（**修改與刪除在手錶上也能確認並執行，查詢不行**）；
+   免費層是手動記帳、iCloud 同步、刪除全部資料，**以及「看自己的數字」**——iPhone 首頁摘要卡、
+   統計分頁、手錶主畫面與 Smart Stack 卡片、手錶最近記錄頁（含左滑刪除）全都不經權益判斷，
+   程式上 `AccessLevel.isAIEnabled` 只擋 AI 一句話記帳。功能卡的 Free／Plus 徽章依此判斷，
+   **不要因為「這是手錶功能」就一律標 Plus**。
+   **Siri 語音喚起在 1.0 全站不宣傳**（中文喚起實機失敗、App 端修不了），
    之後版本做好再加回——不要照舊文案把它補回來。
 2. **隱私敘述必須與這三處一致**：App 內「設定 → 隱私說明」、
    `HuoJi/Resources/PrivacyInfo.xcprivacy`、App Store Connect 的隱私問卷。改一處就三處一起檢查。

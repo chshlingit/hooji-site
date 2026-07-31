@@ -124,7 +124,7 @@
       <div class="step">
         <div class="n">1</div>
         <h3 data-i18n="s1_h">押住金幣，說一句話</h3>
-        <p data-i18n="s1_p">在 iPhone 或 Apple Watch 上押住金幣說話，放開就送出。辨識會自動判斷你講的是哪種語言，一句話裡夾雜著講也聽得準；那段錄音只用於這一次辨識，轉成文字後就丟掉。</p>
+        <p data-i18n="s1_p">在 iPhone 或 Apple Watch 上押住金幣說話，放開就送出——iPhone 上會先把聽到的內容顯示出來，整理好的結果到了再原地換上，不必盯著轉圈。辨識會自動判斷你講的是哪種語言，一句話裡夾雜著講也聽得準；那段錄音只用於這一次辨識，轉成文字後就丟掉。</p>
       </div>
       <div class="step">
         <div class="n">2</div>
@@ -159,19 +159,33 @@
         <span class="tier plus">Plus</span>
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="3"/><path d="M9 6 8.5 2.8A1 1 0 0 1 9.5 2h5a1 1 0 0 1 1 1.2L15 6M9 18l-.5 3.2a1 1 0 0 0 1 1.2h5a1 1 0 0 0 1-1.2L15 18"/></svg></div>
         <h3 data-i18n="f2_h">Apple Watch 抬手就記</h3>
-        <p data-i18n="f2_p">錶面上押住金幣說一句，放開就送出。手錶自己連網完成辨識，iPhone 不必在旁邊；沒有網路時先留在手錶上排隊，回到線上自動送出。</p>
-      </div>
-      <div class="card">
-        <span class="tier plus">Plus</span>
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="9" rx="2.5"/><path d="M6.5 6.5h11M9 3h6"/></svg></div>
-        <h3 data-i18n="f3_h">今天花多少，抬腕就看到</h3>
-        <p data-i18n="f3_p">夥計的 Smart Stack 卡片把今天花了多少放在錶面上，抬腕轉一下數位錶冠就看到。想記一筆就點一下卡片，App 會直接開始聽，說完就記好。</p>
+        <p data-i18n="f2_p">錶面上押住金幣說一句，放開就送出；從 Smart Stack 卡片點進來時，App 會直接開始聽。手錶自己連網完成辨識，iPhone 不必在旁邊；沒有網路時先留在手錶上排隊，回到線上自動送出。</p>
       </div>
       <div class="card">
         <span class="tier plus">Plus</span>
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></div>
         <h3 data-i18n="f4_h">也能查、能改、能刪</h3>
-        <p data-i18n="f4_p">「這個月吃飯花多少？」、「把剛剛那筆改成 250」。查詢在你的裝置上跑；修改與刪除一定先讓你確認才動手。</p>
+        <p data-i18n="f4_p">「這個月吃飯花多少？」、「把剛剛那筆改成 250」。查詢在你的裝置上跑；修改與刪除一定先讓你確認才動手。修改與刪除在 Apple Watch 上說也可以：錶上會先秀出比對到的那一筆，按下確認才執行（查詢結果仍要在 iPhone 上看）。</p>
+      </div>
+      <!-- 以下四張是免費層：看自己的數字與手動記帳不經 AI 權益判斷
+           （AccessLevel.isAIEnabled 只擋 AI 一句話記帳）。徽章別跟著手錶／AI 一起標成 Plus。 -->
+      <div class="card">
+        <span class="tier" data-i18n="tier_free">免費</span>
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="9" rx="2.5"/><path d="M6.5 6.5h11M9 3h6"/></svg></div>
+        <h3 data-i18n="f3_h">今天花多少，抬腕就看到</h3>
+        <p data-i18n="f3_p">夥計的 Smart Stack 卡片把今天花了多少放在錶面上，抬腕轉一下數位錶冠就看到。打開手錶上的夥計，本月與今日的金額也在最上面——看自己的數字不必訂閱。</p>
+      </div>
+      <div class="card">
+        <span class="tier" data-i18n="tier_free">免費</span>
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M7.5 15.5v-3M12 15.5v-6M16.5 15.5v-4"/></svg></div>
+        <h3 data-i18n="f7_h">打開就看到現在花多少</h3>
+        <p data-i18n="f7_p">夥計分頁最上面常駐本月與今日的支出，打開 App 一眼就知道現在的狀況；有收入才會另外列一行。點一下就跳到統計，看分類佔比與趨勢。</p>
+      </div>
+      <div class="card">
+        <span class="tier" data-i18n="tier_free">免費</span>
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="13" height="14" rx="3"/><path d="M8.5 9.5h6M8.5 12.5h6M8.5 15.5h3.5M21 10.5v3"/></svg></div>
+        <h3 data-i18n="f8_h">手錶上核對剛剛那筆</h3>
+        <p data-i18n="f8_p">在手錶上轉一下數位錶冠，就從錄音畫面切到「最近記錄」，最近 10 筆一目了然。記錯了就左滑刪除，確認之後由 iPhone 完成——手錶和 iPhone 連得上就行，不必打開 App。</p>
       </div>
       <div class="card">
         <span class="tier" data-i18n="tier_free">免費</span>
@@ -236,6 +250,7 @@
         <div class="price-alt" data-i18n="pr_free_note">永久免費，不需要帳號</div>
         <ul>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pr_f1">手動記帳無限，離線可用</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pr_f5">本月／今日與最近記錄隨時看得到</span></li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pr_f2">iCloud 跨裝置同步</span></li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pr_f3">隨時永久刪除全部資料</span></li>
           <li class="off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg><span data-i18n="pr_f4">AI 一句話記帳（試用期後關閉）</span></li>
@@ -250,7 +265,7 @@
         <ul>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pr_p1">免費方案的一切</span></li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pr_p2">AI 一句話記帳（語音與文字）</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pr_p3">Apple Watch 記帳</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pr_p3">Apple Watch 記帳，並用一句話修改、刪除</span></li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pr_p5">用一句話查詢、修改、刪除</span></li>
         </ul>
       </div>
@@ -284,7 +299,7 @@
       </details>
       <details>
         <summary data-i18n="q4">支援哪些裝置？</summary>
-        <p data-i18n="a4">iPhone（iOS 17 以上）與 Apple Watch（watchOS 10 以上）。手錶記帳只需要手錶能連上網路，iPhone 不必在旁邊。</p>
+        <p data-i18n="a4">iPhone（iOS 17 以上）與 Apple Watch（watchOS 10 以上）。手錶記帳只需要手錶能連上網路，iPhone 不必在旁邊；用語音修改、刪除，或在手錶上刪掉某一筆，則需要手錶和 iPhone 連得上（iPhone 不必打開 App）。</p>
       </details>
       <details>
         <summary data-i18n="q5">支援哪些語言？</summary>
