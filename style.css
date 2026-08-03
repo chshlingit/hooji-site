@@ -1,45 +1,34 @@
 /* 夥計（Hooji）官網樣式。
-   設計取自 App Icon：金幣的金色漸層 ＋ 深褐色線條，配溫暖的紙感底色。
-   淺色／深色由系統偏好決定（prefers-color-scheme），兩種都要能讀。 */
+   設計取自 App Icon：金幣的金色漸層 ＋ 深褐色線條。
+
+   **官網固定深色，不跟隨系統偏好**（2026-08-03）：金色在近黑底上的對比最強，
+   而訪客只會停留幾分鐘、不需要在大太陽下讀——那正是官網與 App 的差別，
+   **App 端維持跟隨系統**（記帳常發生在戶外，深色在強光下對比會急遽下降）。
+
+   實作是把深色值直接寫成 `:root` 的預設，而不是留一組淺色再用媒體查詢覆蓋——
+   後者會讓淺色值成為「載入瞬間閃一下」的來源，也讓下一個人以為兩種都還要維護。
+   淺色那一組已整組刪除；要恢復雙色系就把值搬回媒體查詢裡。 */
 
 :root {
-  --bg: #fdfaf3;
-  --bg-tint: #f7f0e2;
-  --surface: #ffffff;
-  --surface-2: #fbf6ec;
-  --ink: #241b10;
-  --ink-2: #6b5b45;
-  --ink-3: #8d7d66;
-  --gold: #e0951f;
-  --gold-soft: #f7c460;
-  --gold-deep: #a86a0d;
-  --line: rgba(36, 27, 16, 0.12);
-  --line-strong: rgba(36, 27, 16, 0.22);
-  --shadow: 0 1px 2px rgba(36, 27, 16, 0.05), 0 12px 32px rgba(36, 27, 16, 0.07);
-  --shadow-lg: 0 2px 6px rgba(36, 27, 16, 0.06), 0 28px 60px rgba(36, 27, 16, 0.13);
+  color-scheme: dark; /* 讓捲軸、表單控制項等瀏覽器原生 UI 也走深色，否則會出現亮白捲軸 */
+  --bg: #14110c;
+  --bg-tint: #1b1710;
+  --surface: #1d1912;
+  --surface-2: #241f16;
+  --ink: #f6efe2;
+  --ink-2: #bcac92;
+  --ink-3: #9a8b73;
+  --gold: #f2b440;
+  --gold-soft: #ffd583;
+  --gold-deep: #ffcb6b;
+  --line: rgba(246, 239, 226, 0.13);
+  --line-strong: rgba(246, 239, 226, 0.26);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 2px 6px rgba(0, 0, 0, 0.45), 0 28px 60px rgba(0, 0, 0, 0.5);
   --radius: 18px;
   --wrap: 1080px;
   --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC",
     "Noto Sans TC", "Hiragino Sans", "Microsoft JhengHei", Roboto, Helvetica, Arial, sans-serif;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #14110c;
-    --bg-tint: #1b1710;
-    --surface: #1d1912;
-    --surface-2: #241f16;
-    --ink: #f6efe2;
-    --ink-2: #bcac92;
-    --ink-3: #9a8b73;
-    --gold: #f2b440;
-    --gold-soft: #ffd583;
-    --gold-deep: #ffcb6b;
-    --line: rgba(246, 239, 226, 0.13);
-    --line-strong: rgba(246, 239, 226, 0.26);
-    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.35);
-    --shadow-lg: 0 2px 6px rgba(0, 0, 0, 0.45), 0 28px 60px rgba(0, 0, 0, 0.5);
-  }
 }
 
 * { box-sizing: border-box; }
