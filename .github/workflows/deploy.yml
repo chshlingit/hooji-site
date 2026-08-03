@@ -54,7 +54,7 @@ jobs:
         run: |
           mkdir -p _site
           cp index.html privacy.html terms.html support.html 404.html \
-             style.css i18n.js robots.txt _site/
+             style.css i18n.js robots.txt sitemap.xml _site/
           cp -R assets _site/assets
 
       - uses: actions/configure-pages@v5

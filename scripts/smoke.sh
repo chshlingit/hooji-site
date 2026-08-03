@@ -63,21 +63,21 @@ for page in privacy terms support 404; do
 done
 
 # 首頁沒有語言區塊，改驗字典確實有套用到內文——正反面都驗，才擋得住「只換一半」。
-# 上架前首頁是「即將推出」；完整行銷首頁在 home-full.html（不發佈）。
-check "index.html?lang=en 套用英文字串" min 1 "Getting ready for the App Store" "http://localhost:$PORT/index.html?lang=en"
-check "index.html?lang=en 沒有殘留中文" none 0 "正在準備上架" "http://localhost:$PORT/index.html?lang=en"
-check "index.html?lang=zh 套用中文字串" min 1 "正在準備上架" "http://localhost:$PORT/index.html?lang=zh"
-check "index.html?lang=zh 沒有殘留英文" none 0 "Getting ready for the App Store" "http://localhost:$PORT/index.html?lang=zh"
-check "index.html?lang=ja 套用日文字串" min 1 "公開を準備しています" "http://localhost:$PORT/index.html?lang=ja"
-check "index.html?lang=ja 沒有殘留中文" none 0 "正在準備上架" "http://localhost:$PORT/index.html?lang=ja"
+check "index.html?lang=en 套用英文字串" min 1 "Say it once" "http://localhost:$PORT/index.html?lang=en"
+check "index.html?lang=en 沒有殘留中文" none 0 "說一句話" "http://localhost:$PORT/index.html?lang=en"
+check "index.html?lang=zh 套用中文字串" min 1 "說一句話" "http://localhost:$PORT/index.html?lang=zh"
+check "index.html?lang=zh 沒有殘留英文" none 0 "Say it once" "http://localhost:$PORT/index.html?lang=zh"
+check "index.html?lang=ja 套用日文字串" min 1 "話すだけ" "http://localhost:$PORT/index.html?lang=ja"
+check "index.html?lang=ja 沒有殘留中文" none 0 "說一句話" "http://localhost:$PORT/index.html?lang=ja"
 
-# 上架前的守門員：首頁絕不能洩漏定價或功能清單（那些只在 home-full.html）
-check "index.html 沒有洩漏定價" none 0 "NT\$60" "http://localhost:$PORT/index.html"
-check "home-full.html 仍然可用（上架後要換回去）" min 1 "說一句話" "http://localhost:$PORT/home-full.html?lang=zh"
+# 上架後的守門員：下載按鈕必須指向真實的 App Store 連結。
+# 「準備中」那版是佔位，混進正式站等於首頁沒有入口。
+check "首頁有 App Store 下載連結" min 1 "apps.apple.com/app/id6795160570" "http://localhost:$PORT/index.html"
+check "首頁沒有殘留「準備中」佔位" none 0 "App Store 準備中" "http://localhost:$PORT/index.html?lang=zh"
 
 # 三語都要真的切得動：日文版必須出現日文價格、且不殘留台幣。
-check "home-full.html?lang=ja 套用日文定價" min 1 "¥500" "http://localhost:$PORT/home-full.html?lang=ja"
-check "home-full.html?lang=ja 沒有殘留台幣" none 0 "NT\$" "http://localhost:$PORT/home-full.html?lang=ja"
+check "index.html?lang=ja 套用日文定價" min 1 "¥500" "http://localhost:$PORT/index.html?lang=ja"
+check "index.html?lang=ja 沒有殘留台幣" none 0 "NT\$" "http://localhost:$PORT/index.html?lang=ja"
 
 if [ "$fails" -gt 0 ]; then
   echo "✗ 煙霧測試失敗：$fails 項"

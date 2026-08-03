@@ -7,22 +7,15 @@ App 本體在 [chshlingit/huoji](https://github.com/chshlingit/huoji)。
 
 ## 現在的狀態：上架前，行銷首頁未公開
 
-App 尚未上架，因此**正式站上的首頁是「即將推出」**，不透露功能、定價與截圖。
-完整的行銷首頁原封不動保留在 `home-full.html`，但**刻意不在 `deploy.yml` 的發佈清單裡**，
-所以不會出現在正式站上。全站另加 `noindex` 與 `robots.txt: Disallow: /`。
+夥計已於 2026-08-01 通過 App Review。正式站的首頁就是完整行銷首頁，
+全站開放收錄（`robots.txt: Allow: /` ＋ `sitemap.xml`），
+首頁的下載按鈕指向 <https://apps.apple.com/app/id6795160570>。
 
-**法律頁（隱私、條款、支援）維持可存取**——這是刻意的：
-App Store Connect 的 Privacy Policy URL 指向 `privacy.html`，Apple 送審時會實際去點，
-整站關掉會直接被退件（App Review 5.1.1）。
-
-### 上架後恢復官網
-
-1. `git mv home-full.html index.html`（覆蓋掉「即將推出」那版）
-2. 移除各頁 `<meta name="robots" content="noindex, nofollow">`
-3. `robots.txt` 改回 `Allow: /` 並還原 `Sitemap:` 那一行
-4. `deploy.yml` 的發佈清單加回 `sitemap.xml`
-5. `scripts/smoke.sh` 的首頁斷言改回「說一句話／Say it once」，並移除 `home-full.html` 那兩條
-6. 把首頁的 App Store 按鈕換成正式連結（見下方「上線前替換」）
+上架前那套「首頁＝即將推出、全站 noindex、`home-full.html` 不發佈」的安排
+已經在上架時解除（見 git 歷史）。`smoke.sh` 的守門員也跟著換了方向：
+從「首頁不可洩漏定價」改成「**首頁必須有真實的 App Store 連結、
+不可殘留『準備中』佔位**」——上架後前者不再是風險，後者才是
+（佔位混進正式站等於首頁沒有入口）。
 
 ## 這個 repo 有什麼
 
@@ -118,12 +111,10 @@ python3 scripts/make-og.py     # 需要 Pillow
 3. **訂閱揭露**（自動續訂、期間、取消方式、試用不綁付款）不可刪減，那是 App Review 3.1.1／3.1.2 的必備項目。
 4. 價格一律加註「以你的 App Store 地區顯示為準」——網站寫死 NT$ 但實際幣別由 StoreKit 決定。
 
-## 上線前替換
+## 上線前替換（已完成）
 
-- [ ] `index.html` 的 App Store 按鈕：目前是停用狀態的「App Store 準備中」，上架後換成
-      `https://apps.apple.com/app/idXXXXXXXXXX` 的連結（搜尋 `TODO（上線前替換）`）。
-- [ ] App 端 `HuoJi/AppConfig.swift` 的 `privacyPolicyURL` 目前指向 GitHub repo，
-      要改成 `https://chshlingit.github.io/hooji-site/privacy.html`。
+- [x] `index.html` 的 App Store 按鈕 → <https://apps.apple.com/app/id6795160570>（2026-08-01）
+- [x] App 端 `Hooji/AppConfig.swift` 的 `privacyPolicyURL` 已指向 `privacy.html`
 - [ ] App Store Connect：Privacy Policy URL 填 `privacy.html`、Support URL 填 `support.html`、
       Marketing URL 填首頁。
 - [ ] 確認 `hooji.app@gmail.com` 這個信箱確實可以收信（隱私政策、支援頁、頁尾都公開了這個地址）。
