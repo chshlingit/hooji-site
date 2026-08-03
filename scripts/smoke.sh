@@ -74,6 +74,9 @@ check "index.html?lang=ja 沒有殘留中文" none 0 "說一句話" "http://loca
 # 「準備中」那版是佔位，混進正式站等於首頁沒有入口。
 check "首頁有 App Store 下載連結" min 1 "apps.apple.com/app/id6795160570" "http://localhost:$PORT/index.html"
 check "首頁沒有殘留「準備中」佔位" none 0 "App Store 準備中" "http://localhost:$PORT/index.html?lang=zh"
+# 桌機訪客唯一的下載途徑：QR 圖檔必須真的存在（路徑打錯會變成一個破圖，
+# 而 CSS 只在桌機顯示它，手機測試永遠看不到壞掉）。
+check "QR 圖檔存在" min 1 "svg" "http://localhost:$PORT/assets/appstore-qr.svg"
 
 # 三語都要真的切得動：日文版必須出現日文價格、且不殘留台幣。
 check "index.html?lang=ja 套用日文定價" min 1 "¥500" "http://localhost:$PORT/index.html?lang=ja"

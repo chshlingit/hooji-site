@@ -59,6 +59,14 @@
         <a class="btn alt" href="#how" data-i18n="hero_cta2">看看怎麼運作</a>
       </p>
       <p class="small" data-i18n="hero_note">iPhone 與 Apple Watch，iOS 17 以上。免費下載，7 天完整試用不必先綁付款。</p>
+
+      <!-- 桌機專用的下載入口。在電腦上開 App Store 連結**永遠不會有安裝按鈕**
+           （Mac 裝不了 iPhone App，這是所有 iOS App 的共同情況），桌機訪客
+           因此會以為連結壞了。QR 讓他們用手機掃。手機上隱藏（掃自己沒有意義）。 -->
+      <div class="qr-hint" aria-hidden="true">
+        <img src="assets/appstore-qr.svg" alt="" width="96" height="96" loading="lazy">
+        <span data-i18n="hero_qr">用手機掃描下載</span>
+      </div>
       <ul class="hero-badges">
         <li><span class="dot"></span><span data-i18n="hero_b1">帳目只存在你的裝置與 iCloud</span></li>
         <li><span class="dot"></span><span data-i18n="hero_b2">自動判斷語言，夾雜著講也聽得準</span></li>

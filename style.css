@@ -161,6 +161,24 @@ section.tint { background: var(--bg-tint); }
 
 .hero .tag { font-size: 1.1rem; color: var(--ink-2); max-width: 46ch; }
 .hero .cta { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0 12px; }
+
+/* 桌機專用的 QR 下載入口。
+   手機上隱藏：在手機上顯示一個要用手機掃的 QR 沒有意義，只會佔掉首屏。
+   斷點用 hover 能力而非寬度——平板與觸控筆電也該當成「手機那一類」
+   （它們可以直接點連結安裝），純寬度判斷會誤傷。 */
+.qr-hint { display: none; }
+@media (min-width: 900px) and (hover: hover) {
+  .qr-hint {
+    display: inline-flex; align-items: center; gap: 12px;
+    margin-top: 18px; padding: 10px 14px 10px 10px;
+    border: 1px solid var(--line); border-radius: 14px;
+    background: var(--surface);
+  }
+  /* QR 一律白底深色模組——反白的 QR 有些掃描器讀不到，
+     所以這裡不跟著深色模式反轉，只加一圈留白。 */
+  .qr-hint img { display: block; background: #fff; border-radius: 6px; padding: 5px; }
+  .qr-hint span { font-size: .86rem; color: var(--ink-2); }
+}
 .hero-badges { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 22px; padding: 0; list-style: none; }
 .hero-badges li { display: inline-flex; align-items: center; gap: 7px; font-size: 0.88rem; color: var(--ink-2); font-weight: 600; }
 .hero-badges .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex: none; }
